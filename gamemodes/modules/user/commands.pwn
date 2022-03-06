@@ -4,9 +4,20 @@ YCMD:ann(playerid, params[], help)
 		return SendClientMessage(playerid, X11_YELLOW, "[Info]"WHITE" Sends an announcement in the chat.  Example: '/ann i love frogs'");
 
 	if (isnull(params))
-		return SendClientMessage(playerid, X11_YELLOW, "[Usage]"WHITE" You must enter an action");
+		return SendClientMessage(playerid, X11_YELLOW, "[Usage]"WHITE" Cannot send empty announcement");
 
 	return va_SendClientMessageToAll(X11_RED, "[Announcement]"WHITE" %s", params);
 }
 
 YCMD:announce(playerid, params[], help) = ann;
+
+YCMD:ooc(playerid, params[], help)
+{
+	if (help)
+		return SendClientMessage(playerid, X11_YELLOW, "[Info]"WHITE" Send a message in the global OOC chat.  Example: '/ooc i love frogs'");
+
+	if (isnull(params))
+		return SendClientMessage(playerid, X11_YELLOW, "[Usage]"WHITE" Cannot send empty message.");
+
+	return va_SendClientMessageToAll(X11_GREY, "[OOC]"WHITE" %s", params);
+}
