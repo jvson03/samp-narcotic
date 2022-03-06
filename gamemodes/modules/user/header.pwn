@@ -8,7 +8,8 @@ enum E_PLAYER_DATA
 
 new
     MySQL:gHandler,
-    gPlayerInfo[MAX_PLAYERS][E_PLAYER_DATA];
+    gPlayerInfo[MAX_PLAYERS][E_PLAYER_DATA],
+    Group:gGroupLoggedIn;
 
 // Getters
 

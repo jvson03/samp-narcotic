@@ -8,3 +8,5 @@ YCMD:ann(playerid, params[], help)
 
 	return va_SendClientMessageToAll(X11_RED, "[Announcement]"WHITE" %s", params);
 }
+
+YCMD:announce(playerid, params[], help) = ann;

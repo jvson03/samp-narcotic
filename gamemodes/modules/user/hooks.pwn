@@ -5,26 +5,47 @@
 
 hook OnGameModeInit()
 {
-    gHandler = mysql_connect_file(); // Try establishing connection from scriptfiles\\mysql.ini
+    // Try establishing connection from scriptfiles\\mysql.ini
+    gHandler = mysql_connect_file();
 
-    if(mysql_errno(gHandler)) // If there has been issue establishing connection
+    // If there has been issue establishing connection
+    if(mysql_errno(gHandler))
     {
-        print("[MySQL - ERROR] Connection couldn't be established with the MySQL database!"); // Print that there has been one
+        // Print that there has been one
+        print("[MySQL - ERROR] Connection couldn't be established with the MySQL database!");
         return SendRconCommand("exit"); // Close server.exe
     }
-    print("[MySQL - SUCCESS] Connection has been successfully established!"); // Otherwise print that there has been no issues
+    // Otherwise print that there has been no issues
+    print("[MySQL - SUCCESS] Connection has been successfully established!");
 
-    return 1;
+	// Create a group for people logged in.
+	gGroupLoggedIn = Group_Create();
+
+	// Disable all commands by default.
+	Group_SetGlobalCommandDefault(false);
+
+	// Enable the command only for people in this group.
+	Group_SetCommand(gGroupLoggedIn, YCMD:ann, false);
+    return true;
 }
 
 hook OnPlayerConnect(playerid)
 {
-    User_DoesAccountExist(playerid); // Call function to check if their account exists
-    return 1;
+    // Call function to check if their account exists
+    User_DoesAccountExist(playerid);
+    return true;
 }
 
 hook OnPlayerDisconnect(playerid, reason)
 {
-    User_ResetVariables(playerid); // Reset variables when player disconnects
-    return 1;
+    // Reset variables when player disconnects
+    User_ResetVariables(playerid);
+    return true;
+}
+
+hook OnPlayerDeath(playerid, killerid, reason)
+{
+    SpawnPlayer(playerid); // Spawn
+    SetPlayerHealth(playerid, 100);
+    return true;
 }

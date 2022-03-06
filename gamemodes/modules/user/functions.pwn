@@ -96,6 +96,8 @@ User_Login(playerid)
             // va_SendClientMessage(playerid, X11_YELLOW, "[Server]"WHITE" Your SQL ID: %i.", gPlayerInfo[playerid][E_PLAYER_ID]); // For test -> To check if works
             SetSpawnInfo(playerid, 0, 299, 0.0, 0.0, 5.0, 0.0, 0, 0, 0, 0, 0, 0); // Spawn info
             SpawnPlayer(playerid); // Spawn
+            // Add the player to the group - they can now use `/me`.
+            gGroupLoggedIn += playerid;
         }
     }
     MySQL_TQueryInline(gHandler, using inline LoadAccount, "SELECT * FROM players WHERE Name = '%e'", ReturnPlayerName(playerid)); // Select everything from db

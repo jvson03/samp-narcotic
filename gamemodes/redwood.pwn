@@ -21,6 +21,7 @@
 #include <YSI_Coding\y_va>
 #include <YSI_Server\y_colours>
 #include <YSI_Data\y_iterate>
+#include <YSI_Players\y_groups>
 #include <YSI_Visual\y_commands>
 #include <YSI_Coding\y_hooks>
 
@@ -28,5 +29,5 @@ main() {}
 
 // Modules
 
-#include "./modules/user/core.pwn"
-#include "./modules/admin/core.pwn"
+#include ".\modules\user\core.pwn"
+#include ".\modules\admin\core.pwn"
