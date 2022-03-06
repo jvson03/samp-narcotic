@@ -17,3 +17,10 @@ User_GetID(playerid)
 {
     return gPlayerInfo[playerid][E_PLAYER_ID];
 }
+
+User_GetName(playerid)
+{
+    new string[MAX_PLAYER_NAME];
+    GetPlayerName(playerid, string, MAX_PLAYER_NAME);
+    return string;
+}

@@ -29,6 +29,5 @@ main() {}
 
 // Modules
 
-#include ".\modules\user\core.pwn"
-#include ".\modules\admin\core.pwn"
-#include ".\modules\chat\core.pwn"
+#include ".\modules\user\user_core.pwn"
+#include ".\modules\admin\admin_core.pwn"
