@@ -8,12 +8,6 @@ User_GetName(playerid)
     return string;
 }
 
-User_SetName(playerid, name[])
-{
-    mysql_tquery(gHandler, va_return("UPDATE `players` SET Name = %s WHERE ID = %i", name, User_GetID(playerid)));
-    return true;
-}
-
 User_DoesAccountExist(playerid)
 {
     inline const DoesAccountExist()
@@ -98,8 +92,8 @@ User_Login(playerid)
         else // Otherwise
         {
             cache_get_value_name_int(0, "ID", gPlayerInfo[playerid][E_PLAYER_ID]); // Load data
-            SendClientMessage(playerid, X11_YELLOW, "[Server]"WHITE" Your account has been successfully loaded."); // Show msg that they successfully logged in
-            va_SendClientMessage(playerid, X11_YELLOW, "[Server]"WHITE" Your SQL ID: %i.", gPlayerInfo[playerid][E_PLAYER_ID]); // For test -> To check if works
+            SendClientMessage(playerid, X11_YELLOW, "[Server]"WHITE" Your account has been successfully loaded. Welcome back!"); // Show msg that they successfully logged in
+            // va_SendClientMessage(playerid, X11_YELLOW, "[Server]"WHITE" Your SQL ID: %i.", gPlayerInfo[playerid][E_PLAYER_ID]); // For test -> To check if works
             SetSpawnInfo(playerid, 0, 299, 0.0, 0.0, 5.0, 0.0, 0, 0, 0, 0, 0, 0); // Spawn info
             SpawnPlayer(playerid); // Spawn
         }
