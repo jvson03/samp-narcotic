@@ -8,9 +8,9 @@
 		"pawn-lang/YSI-Includes:v5.05.0505",
 		"pawn-lang/sa-mp-fixes",
 		"samp-incognito/samp-streamer-plugin:v2.9.5",
-		"Sreyas-Sreelal/samp-bcrypt:0.3.4",
-		"pBlueG/SA-MP-MySQL:R41",
-		"maddinat0r/sscanf:v2.8.3"
+		"maddinat0r/sscanf:v2.8.3",
+		"pBlueG/SA-MP-MySQL:R41-4",
+        "Sreyas-Sreelal/samp-bcrypt:0.3.4"
 	],
 	"local": true,
 	"runtime": {

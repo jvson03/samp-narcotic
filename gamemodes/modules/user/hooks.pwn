@@ -19,12 +19,12 @@ hook OnGameModeInit()
 
 hook OnPlayerConnect(playerid)
 {
-    CheckAccountExistance(playerid); // Call function to check if their account exists
+    User_DoesAccountExist(playerid); // Call function to check if their account exists
     return 1;
 }
 
 hook OnPlayerDisconnect(playerid, reason)
 {
-    ResetPlayerVariables(playerid); // Reset variables when player disconnects
+    User_ResetVariables(playerid); // Reset variables when player disconnects
     return 1;
 }
