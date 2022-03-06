@@ -1,5 +1,6 @@
-// User Module
+// - User Module
 
-#include "./modules/user/enums.pwn"
+// - Module Parts
+#include "./modules/user/header.pwn"
 #include "./modules/user/functions.pwn"
 #include "./modules/user/hooks.pwn"
