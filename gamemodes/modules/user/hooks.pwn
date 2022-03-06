@@ -27,7 +27,6 @@ hook OnGameModeInit()
 	// Enable the commands only for gGroupLoggedIn.
 	Group_SetCommand(gGroupLoggedIn, YCMD:ann, ALLOW);
     Group_SetCommand(gGroupLoggedIn, YCMD:announce, ALLOW);
-    Group_SetCommand(gGroupLoggedIn, YCMD:ooc, ALLOW);
     return true;
 }
 

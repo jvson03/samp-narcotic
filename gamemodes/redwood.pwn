@@ -31,3 +31,4 @@ main() {}
 
 #include ".\modules\user\core.pwn"
 #include ".\modules\admin\core.pwn"
+#include ".\modules\chat\core.pwn"
