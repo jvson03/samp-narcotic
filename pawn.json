@@ -7,11 +7,13 @@
 		"pawn-lang/samp-stdlib",
 		"pawn-lang/YSI-Includes:v5.05.0505",
 		"pawn-lang/sa-mp-fixes",
-		"samp-incognito/samp-streamer-plugin:v2.9.5"
+		"samp-incognito/samp-streamer-plugin:v2.9.5",
+		"Sreyas-Sreelal/samp-bcrypt:0.3.4",
+		"pBlueG/SA-MP-MySQL:R41"
 	],
 	"local": true,
 	"runtime": {
-		"version": "0.3.7",
+		"version": "0.3.DL",
 		"mode": "server",
 		"rcon_password": "gurumiisdumb",
 		"port": 7777,

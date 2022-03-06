@@ -1,16 +1,16 @@
 // - Core Dependencies
-#include "a_samp"
+#include <a_samp>
 // - Dependencies
-#include "streamer"
+#include <streamer>
+#include <a_mysql>
 // - Extra Dependencies
-#include "fixes"
+#include <fixes>
+// - Y_Less
+#include <YSI_Coding\y_hooks>
+#include <YSI_Data\y_iterate>
 
-main() 
-{
-	print("Server is up and running");
-	// write code here and run "sampctl package build" to compile
-	// then run "sampctl package run" to run it
-}
+
+main() {}
 
 // Modules
 
