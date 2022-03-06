@@ -29,3 +29,4 @@ main() {}
 // Modules
 
 #include "./modules/user/core.pwn"
+#include "./modules/admin/core.pwn"
