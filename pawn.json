@@ -62,7 +62,9 @@
 			"constants": {
 				"MAX_PLAYERS": "250"
 			},
-			"compiler": {}
+			"compiler": {
+				"version": "3.10.10"
+			}
 		}
 	]
 }
