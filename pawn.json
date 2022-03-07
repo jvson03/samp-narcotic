@@ -55,7 +55,7 @@
 	"builds": [
 		{
 			"name": "main",
-			"args": ["-;+", "-(+", "-O2", "-Z+"],
+			"args": ["-;+", "-(+", "-Z+"],
 			"includes": [
 				"gamemodes/modules"
 			],
