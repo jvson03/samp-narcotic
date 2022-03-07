@@ -60,7 +60,8 @@
 				"gamemodes/modules"
 			],
 			"constants": {
-				"MAX_PLAYERS": "250"
+				"MAX_PLAYERS": "250",
+				"MAX_DYNAMIC_CARS": "1000"
 			},
 			"compiler": {
 				"version": "3.10.10"
