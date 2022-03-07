@@ -1,7 +1,8 @@
 // User Module | Functions
+
 User_GroupLoggedIn(playerid)
 {
-    // Add the player to the group - they can now use `/me`.
+    // Add the player to the group - they can now use commands.
     gGroupLoggedIn += playerid;
     return true;
 }
@@ -114,6 +115,9 @@ User_Login(playerid)
         {
             // Load data
             cache_get_value_name_int(0, "ID", gPlayerInfo[playerid][E_PLAYER_ID]);
+            cache_get_value_name_int(0, "Rank", gPlayerInfo[playerid][E_PLAYER_RANK]);
+            // Give perms if needed
+            Admin_StaffGroup(playerid);
             // Show msg that they successfully logged in
             SendClientMessage(playerid, X11_YELLOW, "[Server]"WHITE" Your account has been successfully loaded. Welcome back!");
             // For test -> To check if works
@@ -122,9 +126,10 @@ User_Login(playerid)
             SetSpawnInfo(playerid, 0, 299, 0.0, 0.0, 5.0, 0.0, 0, 0, 0, 0, 0, 0);
             // Spawn
             SpawnPlayer(playerid);
-            User_GroupLoggedIn(playerid);
         }
     }
+    // Give everyone the logged in group
+    User_GroupLoggedIn(playerid);
     // Select everything from db
     MySQL_TQueryInline(gHandler, using inline LoadAccount, "SELECT * FROM players WHERE Name = '%e'", ReturnPlayerName(playerid));
     return true;
@@ -133,6 +138,7 @@ User_Login(playerid)
 void:User_ResetVariables(playerid)
 {
     gPlayerInfo[playerid][E_PLAYER_ID] = 0;
+    gPlayerInfo[playerid][E_PLAYER_RANK] = 0;
     gPlayerInfo[playerid][E_PLAYER_HASH][0] = EOS;
 }
 

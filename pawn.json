@@ -20,7 +20,7 @@
 		"rcon_password": "gurumiisdumb",
 		"port": 7777,
 		"hostname": "[Heavy] - Redwood : SAMP - [Re-Launching]",
-		"maxplayers": 200,
+		"maxplayers": 250,
 		"language": "English",
 		"mapname": "San Andreas",
 		"weburl": "www.redwood.net",
@@ -55,9 +55,13 @@
 	"builds": [
 		{
 			"name": "main",
+			"args": ["-;+", "-(+", "-O2", "-Z+"],
 			"includes": [
 				"gamemodes/modules"
 			],
+			"constants": {
+				"MAX_PLAYERS": "250"
+			},
 			"compiler": {}
 		}
 	]
