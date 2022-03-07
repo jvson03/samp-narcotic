@@ -107,7 +107,7 @@ User_Login(playerid)
         if(!lRows)
         {
             // Perhaps the acc got deleted? Something God knows happened!
-            SendClientMessage(playerid, X11_RED, "[Error]"WHITE" There has been an error with your account, perhaps it's deleted?");
+            SendClientMessage(playerid, X11_RED, "[Error]:"WHITE" There has been an error with your account, perhaps it's deleted?");
             // They'll have to either login or register
             return User_DoesAccountExist(playerid);
         }
@@ -119,7 +119,7 @@ User_Login(playerid)
             // Give perms if needed
             Admin_StaffGroup(playerid);
             // Show msg that they successfully logged in
-            SendClientMessage(playerid, X11_YELLOW, "[Server]"WHITE" Your account has been successfully loaded. Welcome back!");
+            SendClientMessage(playerid, X11_YELLOW, "[Server]:"WHITE" Your account has been successfully loaded. Welcome back!");
             // For test -> To check if works
             // va_SendClientMessage(playerid, X11_YELLOW, "[Server]"WHITE" Your SQL ID: %i.", gPlayerInfo[playerid][E_PLAYER_ID]);
             // Spawn info

@@ -12,11 +12,11 @@ hook OnGameModeInit()
     if(mysql_errno(gHandler))
     {
         // Print that there has been one
-        print("[MySQL - ERROR] Connection couldn't be established with the MySQL database!");
+        print("[MySQL - ERROR]: Connection couldn't be established with the MySQL database!");
         return SendRconCommand("exit"); // Close server.exe
     }
     // Otherwise print that there has been no issues
-    print("[MySQL - SUCCESS] Connection has been successfully established!");
+    print("[MySQL - SUCCESS]: Connection has been successfully established!");
 
 	// Create a group for people logged in.
 	gGroupLoggedIn = Group_Create();
