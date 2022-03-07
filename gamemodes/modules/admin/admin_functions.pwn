@@ -16,12 +16,12 @@ Admin_SetAdmin(playerid)
 
 Admin_StaffGroup(playerid)
 {
-    if (User_GetRank(playerid) >= 1)
+    if (User_GetRank(playerid) == 1)
     {
         Admin_SetMod(playerid);
     }
 
-    if (User_GetRank(playerid) >= 2)
+    if (User_GetRank(playerid) == 2)
     {
         Admin_SetAdmin(playerid);
     }
