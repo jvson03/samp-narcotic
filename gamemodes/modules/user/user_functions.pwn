@@ -19,7 +19,7 @@ User_DoesAccountExist(playerid)
         if(lRows)
         {
             // Store player hash into variable
-            cache_get_value_name(0, "Hash", gPlayerInfo[playerid][E_PLAYER_HASH], 65);
+            cache_get_value_name(0, "Hash", gPlayerInfo[playerid][E_PLAYER_DATA_HASH], 65);
 
             inline const AccountExists(response, listitem, string:inputtext[])
             {
@@ -48,7 +48,7 @@ User_DoesAccountExist(playerid)
                         }
                     }
                     // Check player password
-                    BCrypt_CheckInline(inputtext, gPlayerInfo[playerid][E_PLAYER_HASH], using inline CheckHash);
+                    BCrypt_CheckInline(inputtext, gPlayerInfo[playerid][E_PLAYER_DATA_HASH], using inline CheckHash);
                 }
             }
             // Call inline dialog for login
@@ -114,8 +114,8 @@ User_Login(playerid)
         else // Otherwise
         {
             // Load data
-            cache_get_value_name_int(0, "ID", gPlayerInfo[playerid][E_PLAYER_ID]);
-            cache_get_value_name_int(0, "Rank", gPlayerInfo[playerid][E_PLAYER_RANK]);
+            cache_get_value_name_int(0, "ID", gPlayerInfo[playerid][E_PLAYER_DATA_ID]);
+            cache_get_value_name_int(0, "Rank", gPlayerInfo[playerid][E_PLAYER_DATA_RANK]);
             // Give perms if needed
             Admin_StaffGroup(playerid);
             // Show msg that they successfully logged in
@@ -137,9 +137,9 @@ User_Login(playerid)
 
 void:User_ResetVariables(playerid)
 {
-    gPlayerInfo[playerid][E_PLAYER_ID] = 0;
-    gPlayerInfo[playerid][E_PLAYER_RANK] = 0;
-    gPlayerInfo[playerid][E_PLAYER_HASH][0] = EOS;
+    gPlayerInfo[playerid][E_PLAYER_DATA_ID] = 0;
+    gPlayerInfo[playerid][E_PLAYER_DATA_RANK] = 0;
+    gPlayerInfo[playerid][E_PLAYER_DATA_HASH][0] = EOS;
 }
 
 User_DelayedKick(playerid)

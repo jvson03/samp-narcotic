@@ -2,9 +2,9 @@
 
 enum E_PLAYER_DATA
 {
-    E_PLAYER_ID,
-    E_PLAYER_HASH[65],
-    E_PLAYER_RANK
+    E_PLAYER_DATA_ID,
+    E_PLAYER_DATA_HASH[65],
+    E_PLAYER_DATA_RANK
 };
 
 new
@@ -16,7 +16,7 @@ new
 
 // User_GetID(playerid)
 // {
-//     return gPlayerInfo[playerid][E_PLAYER_ID];
+//     return gPlayerInfo[playerid][E_PLAYER_DATA_ID];
 // }
 
 // User_GetName(playerid)
@@ -28,5 +28,5 @@ new
 
 User_GetRank(playerid)
 {
-    return gPlayerInfo[playerid][E_PLAYER_RANK];
+    return gPlayerInfo[playerid][E_PLAYER_DATA_RANK];
 }
