@@ -3,7 +3,8 @@
 enum E_PLAYER_DATA
 {
     E_PLAYER_ID,
-    E_PLAYER_HASH[65]
+    E_PLAYER_HASH[65],
+    E_PLAYER_RANK
 };
 
 new
@@ -23,4 +24,9 @@ User_GetName(playerid)
     new string[MAX_PLAYER_NAME];
     GetPlayerName(playerid, string, MAX_PLAYER_NAME);
     return string;
+}
+
+User_GetRank(playerid)
+{
+    return gPlayerInfo[playerid][E_PLAYER_RANK];
 }

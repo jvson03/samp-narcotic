@@ -1,71 +1,96 @@
 // User Module | Functions
+User_GroupLoggedIn(playerid)
+{
+    // Add the player to the group - they can now use `/me`.
+    gGroupLoggedIn += playerid;
+    return true;
+}
 
 User_DoesAccountExist(playerid)
 {
     inline const DoesAccountExist()
     {
         new
-            lRows = cache_num_rows(); // Declare rows
+            // Declare rows
+            lRows = cache_num_rows();
         
-        if(lRows) // If there's any rows - account exists
+        // If there's any rows - account exists
+        if(lRows)
         {
-            cache_get_value_name(0, "Hash", gPlayerInfo[playerid][E_PLAYER_HASH], 65); // Store player hash into variable
+            // Store player hash into variable
+            cache_get_value_name(0, "Hash", gPlayerInfo[playerid][E_PLAYER_HASH], 65);
 
             inline const AccountExists(response, listitem, string:inputtext[])
             {
                 #pragma unused listitem
-                if(!response) // If player closes dialog
+                // If player closes dialog
+                if(!response)
                 {
-                    User_DelayedKick(playerid); // Kick him
+                    // Kick him
+                    User_DelayedKick(playerid);
                     return true;
                 }
-                else // Otherwise
+                else
                 {
                     inline const CheckHash(bool:correct)
                     {
-                        if(correct) // If the password is correct
+                        // If the password is correct
+                        if(correct)
                         {
-                            User_Login(playerid); // Login him
+                            // Login him
+                            User_Login(playerid);
                         }
                         else
                         {
-                            Dialog_ShowCallback(playerid, using inline AccountExists, DIALOG_STYLE_PASSWORD, "Login", "The password you entered is incorrect.", "Confirm", "Cancel"); // Otherwise they've to enter pass again
+                            // Otherwise they've to enter pass again
+                            Dialog_ShowCallback(playerid, using inline AccountExists, DIALOG_STYLE_PASSWORD, "Login", "The password you entered is incorrect.", "Confirm", "Cancel");
                         }
                     }
-                    BCrypt_CheckInline(inputtext, gPlayerInfo[playerid][E_PLAYER_HASH], using inline CheckHash); // Check player password
+                    // Check player password
+                    BCrypt_CheckInline(inputtext, gPlayerInfo[playerid][E_PLAYER_HASH], using inline CheckHash);
                 }
             }
-            Dialog_ShowCallback(playerid, using inline AccountExists, DIALOG_STYLE_PASSWORD, "Login", "Welcome back! Enter your password.", "Confirm", "Cancel"); // Call inline dialog for login
+            // Call inline dialog for login
+            Dialog_ShowCallback(playerid, using inline AccountExists, DIALOG_STYLE_PASSWORD, "Login", "Welcome back! Enter your password.", "Confirm", "Cancel");
         }
         else // If account doesn't exist
         {
             inline const AccountDoenstExists(response, listitem, string:inputtext[])
             {
                 #pragma unused listitem
-                if(!response) // If player closes dialog
+                // If player closes dialog
+                if(!response)
                 {
-                    User_DelayedKick(playerid); // Kick him
+                    // Kick him
+                    User_DelayedKick(playerid);
                     return true;
                 }
-                else // Otherwise
+                else
                 {
-                    if(isnull(inputtext) || strlen(inputtext) <= 4) // If player didn't enter any pass, or length of pass is below or equal to 4
+                    // If player didn't enter any pass, or length of pass is below or equal to 4
+                    if(isnull(inputtext) || strlen(inputtext) <= 4)
                     {
-                        Dialog_ShowCallback(playerid, using inline AccountDoenstExists, DIALOG_STYLE_PASSWORD, "Register", "Welcome to Redwood! Enter a password to get started.", "Confirm", "Cancel"); // They've to enter pass again
+                        // They've to enter pass again
+                        Dialog_ShowCallback(playerid, using inline AccountDoenstExists, DIALOG_STYLE_PASSWORD, "Register", "Welcome to Redwood! Enter a password to get started.", "Confirm", "Cancel");
                         return true;
                     }
                     inline const HashPassword(string:result[])
                     {
-                        mysql_tquery(gHandler, va_return("INSERT INTO players(Name, Hash) VALUES('%q', '%q')", ReturnPlayerName(playerid), result)); // Thread query insert player acc in db
-                        User_DoesAccountExist(playerid); // Check account existance again -> Let them login this time
+                        // Thread query insert player acc in db
+                        mysql_tquery(gHandler, va_return("INSERT INTO players(Name, Hash) VALUES('%q', '%q')", ReturnPlayerName(playerid), result));
+                        // Check account existance again -> Let them login this time
+                        User_DoesAccountExist(playerid);
                     }
-                    BCrypt_HashInline(inputtext, _, using inline HashPassword); // Hash pass
+                    // Hash pass
+                    BCrypt_HashInline(inputtext, _, using inline HashPassword);
                 }
             }
-            Dialog_ShowCallback(playerid, using inline AccountDoenstExists, DIALOG_STYLE_PASSWORD, "Register", "Welcome to Redwood! Enter a password to get started.", "Confirm", "Cancel"); // Show register dialog
+            // Show register dialog
+            Dialog_ShowCallback(playerid, using inline AccountDoenstExists, DIALOG_STYLE_PASSWORD, "Register", "Welcome to Redwood! Enter a password to get started.", "Confirm", "Cancel");
         }
     }
-    MySQL_TQueryInline(gHandler, using inline DoesAccountExist, "SELECT Hash FROM players WHERE Name = '%e'", ReturnPlayerName(playerid)); // Thread query select player's hash, check if the account exists
+    // Thread query select player's hash, check if the account exists
+    MySQL_TQueryInline(gHandler, using inline DoesAccountExist, "SELECT Hash FROM players WHERE Name = '%e'", ReturnPlayerName(playerid));
     return true;
 }
 
@@ -74,25 +99,34 @@ User_Login(playerid)
     inline const LoadAccount()
     {
         new
-            lRows = cache_num_rows(); // Declare rows
+            // Declare rows
+            lRows = cache_num_rows();
         
-        if(!lRows) // If there's no rows -> SUS
+        // If there's no rows -> SUS
+        if(!lRows)
         {
-            SendClientMessage(playerid, X11_RED, "[Error]"WHITE" There has been an error with your account, perhaps it's deleted?"); // Perhaps the acc got deleted? Something God knows happened!
-            return User_DoesAccountExist(playerid); // They'll have to either login or register
+            // Perhaps the acc got deleted? Something God knows happened!
+            SendClientMessage(playerid, X11_RED, "[Error]"WHITE" There has been an error with your account, perhaps it's deleted?");
+            // They'll have to either login or register
+            return User_DoesAccountExist(playerid);
         }
         else // Otherwise
         {
-            cache_get_value_name_int(0, "ID", gPlayerInfo[playerid][E_PLAYER_ID]); // Load data
-            SendClientMessage(playerid, X11_YELLOW, "[Server]"WHITE" Your account has been successfully loaded. Welcome back!"); // Show msg that they successfully logged in
-            // va_SendClientMessage(playerid, X11_YELLOW, "[Server]"WHITE" Your SQL ID: %i.", gPlayerInfo[playerid][E_PLAYER_ID]); // For test -> To check if works
-            SetSpawnInfo(playerid, 0, 299, 0.0, 0.0, 5.0, 0.0, 0, 0, 0, 0, 0, 0); // Spawn info
-            SpawnPlayer(playerid); // Spawn
-            // Add the player to the group - they can now use `/me`.
-            gGroupLoggedIn += playerid;
+            // Load data
+            cache_get_value_name_int(0, "ID", gPlayerInfo[playerid][E_PLAYER_ID]);
+            // Show msg that they successfully logged in
+            SendClientMessage(playerid, X11_YELLOW, "[Server]"WHITE" Your account has been successfully loaded. Welcome back!");
+            // For test -> To check if works
+            // va_SendClientMessage(playerid, X11_YELLOW, "[Server]"WHITE" Your SQL ID: %i.", gPlayerInfo[playerid][E_PLAYER_ID]);
+            // Spawn info
+            SetSpawnInfo(playerid, 0, 299, 0.0, 0.0, 5.0, 0.0, 0, 0, 0, 0, 0, 0);
+            // Spawn
+            SpawnPlayer(playerid);
+            User_GroupLoggedIn(playerid);
         }
     }
-    MySQL_TQueryInline(gHandler, using inline LoadAccount, "SELECT * FROM players WHERE Name = '%e'", ReturnPlayerName(playerid)); // Select everything from db
+    // Select everything from db
+    MySQL_TQueryInline(gHandler, using inline LoadAccount, "SELECT * FROM players WHERE Name = '%e'", ReturnPlayerName(playerid));
     return true;
 }
 
@@ -106,7 +140,9 @@ User_DelayedKick(playerid)
 {
     inline const KickPlayer()
     {
-        Kick(playerid); // Kick player when the timer's called
+        // Kick player when the timer's called
+        Kick(playerid);
     }
-    return Timer_CreateCallback(using inline KickPlayer, 500, 1); // Inline timer, called after half second, no repeat
+    // Inline timer, called after half second, no repeat
+    return Timer_CreateCallback(using inline KickPlayer, 500, 1);
 }
