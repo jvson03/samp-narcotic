@@ -23,10 +23,6 @@ hook OnGameModeInit()
 
 	// Disable all commands by default.
 	Group_SetGlobalCommandDefault(UNDEF);
-
-	// Enable the commands only for gGroupLoggedIn.
-	Group_SetCommand(gGroupLoggedIn, YCMD:ann, ALLOW);
-    Group_SetCommand(gGroupLoggedIn, YCMD:announce, ALLOW);
     return true;
 }
 
