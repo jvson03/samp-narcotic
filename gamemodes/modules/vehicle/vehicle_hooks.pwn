@@ -7,5 +7,7 @@ hook OnGameModeInit()
 {
     // Load all the vehicles
     Vehicle_LoadData();
+
+    Group_SetCommand(gAdmin, YCMD:giveveh, ALLOW);
     return true;
 }

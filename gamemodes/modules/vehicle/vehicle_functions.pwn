@@ -8,7 +8,7 @@ Vehicle_Create(ownerid, modelid, Float:x, Float:y, Float:z, Float:angle, color1,
         {
             if (color1 == -1)
             {
-                color1 = random(127)
+                color1 = random(127);
             }
 
             if (color2 == -1)
@@ -29,11 +29,7 @@ Vehicle_Create(ownerid, modelid, Float:x, Float:y, Float:z, Float:angle, color1,
             gVehicleInfo[i][E_VEHICLE_DATA_COLOR_2] = color2;
             // Let's create the vehicle
             gVehicleInfo[i][E_VEHICLE_DATA_VEHICLE] = CreateVehicle(modelid, x, y, z, angle, color1, color2, -1);
-        
-            if (gVehicleInfo[i][E_VEHICLE_DATA_VEHICLE] != INVALID_VEHICLE_ID)
-            {
-                ResetVehicle(vehicleid)
-            }
+            // Query
             mysql_tquery(gHandler, "INSERT INTO vehicles (Model) VALUES (0)", "OnVehicleCreated", "d", i);
             return i;
         }
@@ -64,7 +60,7 @@ Vehicle_DeleteData(vehicleid)
 Vehicle_SaveData(vehicleid)
 {
     static
-        query[150];
+        query[180];
 
     format(query, sizeof(query), "UPDATE vehicles SET Model = %d, Owner = %d, PosX = %.4f, PosY = %.4f, PosZ = %.4f, PosA = %.4f, Health = %.4f, Color1 = %d, Color2 = %d, Siren = %d WHERE ID = %d",
         gVehicleInfo[vehicleid][E_VEHICLE_DATA_MODEL],
