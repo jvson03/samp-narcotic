@@ -11,7 +11,8 @@
 		"pBlueG/SA-MP-MySQL:R41-4",
 		"Sreyas-Sreelal/samp-bcrypt:0.3.4",
 		"Zeex/samp-plugin-crashdetect:v4.20",
-		"samp-incognito/samp-streamer-plugin:v2.9.5"
+		"samp-incognito/samp-streamer-plugin:v2.9.5",
+		"Se8870/samp-command-guess"
 	],
 	"local": true,
 	"runtime": {

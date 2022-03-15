@@ -10,6 +10,7 @@
 
 // - Defines
 #define CGEN_MEMORY 30000
+#define YSI_NO_HEAP_MALLOC
 
 // - Extra Dependencies
 #include <YSI_Coding\y_inline>
@@ -23,6 +24,7 @@
 #include <YSI_Data\y_iterate>
 #include <YSI_Players\y_groups>
 #include <YSI_Visual\y_commands>
+#include <command-guess>
 #include <YSI_Coding\y_hooks>
 
 main() {}
