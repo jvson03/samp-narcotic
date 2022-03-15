@@ -35,6 +35,8 @@ hook OnPlayerConnect(playerid)
 
 hook OnPlayerDisconnect(playerid, reason)
 {
+    // Let's save the user data.
+    User_Save(playerid);
     // Reset variables when player disconnects
     User_ResetVariables(playerid);
     return true;

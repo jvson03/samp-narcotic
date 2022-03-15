@@ -116,14 +116,17 @@ User_Login(playerid)
             // Load data
             cache_get_value_name_int(0, "ID", gPlayerInfo[playerid][E_PLAYER_DATA_ID]);
             cache_get_value_name_int(0, "Rank", gPlayerInfo[playerid][E_PLAYER_DATA_RANK]);
+            cache_get_value_name_float(0, "PosX", gPlayerInfo[playerid][E_PLAYER_DATA_POS_X]);
+            cache_get_value_name_float(0, "PosY", gPlayerInfo[playerid][E_PLAYER_DATA_POS_Y]);
+            cache_get_value_name_float(0, "PosZ", gPlayerInfo[playerid][E_PLAYER_DATA_POS_Z]);
+            cache_get_value_name_float(0, "PosA", gPlayerInfo[playerid][E_PLAYER_DATA_POS_A]);
             // Give perms if needed
             Admin_StaffGroup(playerid);
             // Show msg that they successfully logged in
             SendClientMessage(playerid, X11_YELLOW, "[Server]:"WHITE" Your account has been successfully loaded. Welcome back!");
-            // For test -> To check if works
             // va_SendClientMessage(playerid, X11_YELLOW, "[Server]"WHITE" Your SQL ID: %i.", gPlayerInfo[playerid][E_PLAYER_ID]);
             // Spawn info
-            SetSpawnInfo(playerid, 0, 299, 0.0, 0.0, 5.0, 0.0, 0, 0, 0, 0, 0, 0);
+            SetSpawnInfo(playerid, 0, 299, gPlayerInfo[playerid][E_PLAYER_DATA_POS_X], gPlayerInfo[playerid][E_PLAYER_DATA_POS_Y], gPlayerInfo[playerid][E_PLAYER_DATA_POS_Z], gPlayerInfo[playerid][E_PLAYER_DATA_POS_A], 0, 0, 0, 0, 0, 0);
             // Spawn
             SpawnPlayer(playerid);
         }
@@ -132,6 +135,23 @@ User_Login(playerid)
     User_GroupLoggedIn(playerid);
     // Select everything from db
     MySQL_TQueryInline(gHandler, using inline LoadAccount, "SELECT * FROM players WHERE Name = '%e'", ReturnPlayerName(playerid));
+    return true;
+}
+
+User_Save(playerid)
+{
+    GetPlayerPos(playerid, gPlayerInfo[playerid][E_PLAYER_DATA_POS_X], gPlayerInfo[playerid][E_PLAYER_DATA_POS_Y], gPlayerInfo[playerid][E_PLAYER_DATA_POS_Z]);
+    GetPlayerFacingAngle(playerid, gPlayerInfo[playerid][E_PLAYER_DATA_POS_A]);
+    
+    mysql_tquery(gHandler, va_return("UPDATE players SET PosX = '%.4f', PosY = '%.4f', PosZ = '%.4f', PosA = '%.4f' WHERE ID = '%d'",
+        gPlayerInfo[playerid][E_PLAYER_DATA_POS_X],
+        gPlayerInfo[playerid][E_PLAYER_DATA_POS_Y],
+        gPlayerInfo[playerid][E_PLAYER_DATA_POS_Z],
+        gPlayerInfo[playerid][E_PLAYER_DATA_POS_A],
+        gPlayerInfo[playerid][E_PLAYER_DATA_ID]
+    ));
+
+    printf("Saved User : %s", User_GetName(playerid));
     return true;
 }
 
