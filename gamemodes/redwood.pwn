@@ -27,6 +27,7 @@
 #include <command-guess>
 #include <mapfix>
 #include <timestamp>
+#include <UIC>
 #include <YSI_Coding\y_hooks>
 
 main() {}
