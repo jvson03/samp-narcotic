@@ -1,5 +1,25 @@
 // Functions
 
+Vehicle_DeleteData(vehicleid)
+{
+    if (vehicleid != -1 && gVehicleInfo[vehicleid][E_VEHICLE_DATA_EXISTS])
+    {
+        new
+            query;
+
+        format(query, sizeof(query), "DELETE FROM vehicles WHERE ID = %d", gVehicleInfo[vehicleid][E_VEHICLE_DATA_ID]);
+        mysql_tquery(gHandler, query);
+
+        if (IsValidVehicle(gVehicleInfo[vehicleid][E_VEHICLE_DATA_ID]))
+        {
+            DestroyVehicle(gVehicleInfo[vehicleid][E_VEHICLE_DATA_ID]);
+        }
+
+        gVehicleInfo[vehicleid][E_VEHICLE_DATA_EXISTS] = false;
+    }
+    return true;
+}
+
 Vehicle_SaveData(vehicleid)
 {
     static
@@ -18,7 +38,7 @@ Vehicle_SaveData(vehicleid)
         gVehicleInfo[vehicleid][E_VEHICLE_DATA_SIREN],
         gVehicleInfo[vehicleid][E_VEHICLE_DATA_ID],
     );
-    return MySQL_TQuery(gHandler, query);
+    return mysql_tquery(gHandler, query);
 }
 
 Vehicle_LoadData()
