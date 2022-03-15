@@ -6,7 +6,7 @@ public OnVehicleCreated(vehicleid)
         return 0;
     }
 
-	gVehicleInfo[vehicleid][E_VEHICLE_DATA_ID] = cache_insert_id(gHandler);
+	gVehicleInfo[vehicleid][E_VEHICLE_DATA_ID] = cache_insert_id();
 	Vehicle_SaveData(vehicleid);
 	return 1;
 }
