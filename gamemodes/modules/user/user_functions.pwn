@@ -107,7 +107,7 @@ User_Login(playerid)
         if(!lRows)
         {
             // Perhaps the acc got deleted? Something God knows happened!
-            SendClientMessage(playerid, X11_RED, "[Error]:"WHITE" There has been an error with your account, perhaps it's deleted?");
+            SendErrorMessage(playerid, "There has been an error with your account, perhaps it's deleted?");
             // They'll have to either login or register
             return User_DoesAccountExist(playerid);
         }
@@ -123,7 +123,7 @@ User_Login(playerid)
             // Give perms if needed
             Admin_StaffGroup(playerid);
             // Show msg that they successfully logged in
-            SendClientMessage(playerid, X11_YELLOW, "[Server]:"WHITE" Your account has been successfully loaded. Welcome back!");
+            SendServerMessage(playerid, "Your account has been successfully loaded. Welcome back!");
             // va_SendClientMessage(playerid, X11_YELLOW, "[Server]"WHITE" Your SQL ID: %i.", gUserInfo[playerid][E_PLAYER_ID]);
             // Spawn info
             SetSpawnInfo(playerid, 0, 299, gUserInfo[playerid][E_USER_DATA_POS_X], gUserInfo[playerid][E_USER_DATA_POS_Y], gUserInfo[playerid][E_USER_DATA_POS_Z], gUserInfo[playerid][E_USER_DATA_POS_A], 0, 0, 0, 0, 0, 0);

@@ -11,12 +11,12 @@ YCMD:giveveh(playerid, params[], help)
     
     if (sscanf(params, "us[32]", userid, model))
     {
-        return SendClientMessage(playerid, X11_YELLOW, "[Usage]:"WHITE" /giveveh [playerid/name] [modelid/name]");
+        return SendUsageMessage(playerid, "/giveveh [playerid/name] [modelid/name]");
     }
     
     if ((model[0] = Vehicle_GetModelByName(model)) == 0)
     {
-        return SendClientMessage(playerid, X11_YELLOW, "Invalid model ID.");
+        return SendErrorMessage(playerid, "Invalid model ID.");
     }
     
     static
@@ -33,10 +33,10 @@ YCMD:giveveh(playerid, params[], help)
     
     if (id == -1)
     {
-        return SendClientMessage(playerid, X11_YELLOW, "The server has reached the limit for dynamic vehicles.");
+        return SendErrorMessage(playerid, "The server has reached the limit for dynamic vehicles.");
     }
     
-    va_SendClientMessage(playerid, X11_YELLOW, "You have created vehicle ID: %d for %s.", gVehicleInfo[id][E_VEHICLE_DATA_VEHICLE], User_GetName(userid));
+    va_SendClientMessage(playerid, X11_INDIAN_RED, "[Server]:"WHITE" You have created vehicle ID: %d for %s.", gVehicleInfo[id][E_VEHICLE_DATA_VEHICLE], User_GetName(userid));
     return true;
 }
 
@@ -52,12 +52,12 @@ YCMD:veh(playerid, params[], help)
     
     if (sscanf(params, "s[32]", model))
     {
-        return SendClientMessage(playerid, X11_YELLOW, "[Usage]:"WHITE" /veh [modelid/name]");
+        return SendUsageMessage(playerid, "/veh [modelid/name]");
     }
     
     if ((model[0] = Vehicle_GetModelByName(model)) == 0)
     {
-        return SendClientMessage(playerid, X11_YELLOW, "Invalid model.");
+        return SendErrorMessage(playerid, "Invalid model.");
     }
     
     static
@@ -84,7 +84,7 @@ YCMD:vehdel(playerid, params[], help)
     {
         new vehicleid = GetPlayerVehicleID(playerid);
         DestroyVehicle(vehicleid);
-        SendClientMessage(playerid, X11_YELLOW, "You have destroyed this admin vehicle.");
+        SendServerMessage(playerid, "You have destroyed this admin vehicle.");
     }
     return true;
 }
@@ -105,16 +105,16 @@ YCMD:deleteveh(playerid, params[], help)
         {
             id = GetPlayerVehicleID(playerid);
         }
-        else return SendClientMessage(playerid, X11_YELLOW, "[Usage]:"WHITE" /destroycar [vehicle id]");
+        else return SendUsageMessage(playerid, "/destroycar [vehicle id]");
     }
     
 
     if (!IsValidVehicle(id) || Vehicle_GetID(id) == -1)
     {
-        return SendClientMessage(playerid, X11_YELLOW, "You have specified an invalid vehicle ID.");
+        return SendErrorMessage(playerid, "You have specified an invalid vehicle ID.");
     }
     
     Vehicle_DeleteData(Vehicle_GetID(id));
-    va_SendClientMessage(playerid, X11_YELLOW, "You have successfully destroyed vehicle ID: %d.", id);
+    va_SendClientMessage(playerid, X11_INDIAN_RED, "[Server]:"WHITE" You have successfully destroyed vehicle ID: %d.", id);
     return true;
 }

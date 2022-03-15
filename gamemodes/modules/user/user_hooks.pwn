@@ -39,8 +39,8 @@ hook OnPlayerConnect(playerid)
         SendClientMessage(playerid, -1, "");
 	}
     // Send Welcoming Message
-    SendClientMessage(playerid, X11_RED, "[Server]: "WHITE" Welcome to Redwood Roleplay.");
-	SendClientMessage(playerid, X11_RED, "[Server]: "WHITE" This is a heavy RP server. Explicit content may be present.");
+    SendServerMessage(playerid, "Welcome to Redwood Roleplay.");
+    SendServerMessage(playerid, "This is a heavy RP server. Explicit content may be present.");
     return true;
 }
 
