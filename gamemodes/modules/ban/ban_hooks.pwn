@@ -6,6 +6,9 @@
 hook OnGameModeInit()
 {
     Ban_CreateTextDraws();
+    Group_SetCommand(gAdmin, YCMD:ban, ALLOW);
+	Group_SetCommand(gAdmin, YCMD:findban, ALLOW);
+	Group_SetCommand(gAdmin, YCMD:unban, ALLOW);
     return true;
 }
 
