@@ -25,6 +25,7 @@
 #include <YSI_Players\y_groups>
 #include <YSI_Visual\y_commands>
 #include <command-guess>
+#include <mapfix>
 #include <YSI_Coding\y_hooks>
 
 main() {}

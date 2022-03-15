@@ -12,7 +12,8 @@
 		"Sreyas-Sreelal/samp-bcrypt:0.3.4",
 		"Zeex/samp-plugin-crashdetect:v4.20",
 		"samp-incognito/samp-streamer-plugin:v2.9.5",
-		"Se8870/samp-command-guess"
+		"Se8870/samp-command-guess",
+		"NexiusTailer/MapFix"
 	],
 	"local": true,
 	"runtime": {
