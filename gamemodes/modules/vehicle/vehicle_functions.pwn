@@ -1,5 +1,46 @@
 // Functions
 
+Vehicle_Create(ownerid, modelid, Float:x, Float:y, Float:z, Float:angle, color1, color2)
+{
+    for (new i = 0; i != MAX_DYNAMIC_CARS; i ++)
+    {
+        if (!gVehicleInfo[i][E_VEHICLE_DATA_EXISTS])
+        {
+            if (color1 == -1)
+            {
+                color1 = random(127)
+            }
+
+            if (color2 == -1)
+            {
+                color2 = random(127);
+            }
+            // Meh
+            gVehicleInfo[i][E_VEHICLE_DATA_EXISTS] = true;
+            gVehicleInfo[i][E_VEHICLE_DATA_MODEL] = modelid;
+            gVehicleInfo[i][E_VEHICLE_DATA_OWNER] = ownerid;
+            // Position
+            gVehicleInfo[i][E_VEHICLE_DATA_POS_X] = x;
+            gVehicleInfo[i][E_VEHICLE_DATA_POS_Y] = y;
+            gVehicleInfo[i][E_VEHICLE_DATA_POS_Z] = z;
+            gVehicleInfo[i][E_VEHICLE_DATA_POS_A] = angle;
+            // Properties
+            gVehicleInfo[i][E_VEHICLE_DATA_COLOR_1] = color1;
+            gVehicleInfo[i][E_VEHICLE_DATA_COLOR_2] = color2;
+            // Let's create the vehicle
+            gVehicleInfo[i][E_VEHICLE_DATA_VEHICLE] = CreateVehicle(modelid, x, y, z, angle, color1, color2, -1);
+        
+            if (gVehicleInfo[i][E_VEHICLE_DATA_VEHICLE] != INVALID_VEHICLE_ID)
+            {
+                ResetVehicle(vehicleid)
+            }
+            mysql_tquery(gHandler, "INSERT INTO vehicles (Model) VALUES (0)", "OnVehicleCreated", "d", i);
+            return i;
+        }
+    }
+    return false;
+}
+
 Vehicle_DeleteData(vehicleid)
 {
     if (vehicleid != -1 && gVehicleInfo[vehicleid][E_VEHICLE_DATA_EXISTS])
@@ -36,7 +77,7 @@ Vehicle_SaveData(vehicleid)
         gVehicleInfo[vehicleid][E_VEHICLE_DATA_COLOR_1],
         gVehicleInfo[vehicleid][E_VEHICLE_DATA_COLOR_2],
         gVehicleInfo[vehicleid][E_VEHICLE_DATA_SIREN],
-        gVehicleInfo[vehicleid][E_VEHICLE_DATA_ID],
+        gVehicleInfo[vehicleid][E_VEHICLE_DATA_ID]
     );
     return mysql_tquery(gHandler, query);
 }
