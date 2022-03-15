@@ -1,5 +1,26 @@
 // Functions
 
+Vehicle_SaveData(vehicleid)
+{
+    static
+        query[150];
+
+    format(query, sizeof(query), "UPDATE vehicles SET Model = %d, Owner = %d, PosX = %.4f, PosY = %.4f, PosZ = %.4f, PosA = %.4f, Health = %.4f, Color1 = %d, Color2 = %d, Siren = %d WHERE ID = %d",
+        gVehicleInfo[vehicleid][E_VEHICLE_DATA_MODEL],
+        gVehicleInfo[vehicleid][E_VEHICLE_DATA_OWNER],
+        gVehicleInfo[vehicleid][E_VEHICLE_DATA_POS_X],
+        gVehicleInfo[vehicleid][E_VEHICLE_DATA_POS_Y],
+        gVehicleInfo[vehicleid][E_VEHICLE_DATA_POS_Z],
+        gVehicleInfo[vehicleid][E_VEHICLE_DATA_POS_A],
+        gVehicleInfo[vehicleid][E_VEHICLE_DATA_HEALTH],
+        gVehicleInfo[vehicleid][E_VEHICLE_DATA_COLOR_1],
+        gVehicleInfo[vehicleid][E_VEHICLE_DATA_COLOR_2],
+        gVehicleInfo[vehicleid][E_VEHICLE_DATA_SIREN],
+        gVehicleInfo[vehicleid][E_VEHICLE_DATA_ID],
+    );
+    return MySQL_TQuery(gHandler, query);
+}
+
 Vehicle_LoadData()
 {
     inline const LoadVehicles()
@@ -30,7 +51,7 @@ Vehicle_LoadData()
                 cache_get_value_name_bool(0, "Siren", gVehicleInfo[i][E_VEHICLE_DATA_SIREN]);
 
                 // After we load the data we spawn the vehicles
-                Vehicle_SpawnVehicle(i);
+                // Vehicle_SpawnVehicle(i);
             }
         }
     }
