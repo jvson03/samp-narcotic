@@ -19,7 +19,7 @@ User_DoesAccountExist(playerid)
         if(lRows)
         {
             // Store player hash into variable
-            cache_get_value_name(0, "Hash", gPlayerInfo[playerid][E_PLAYER_DATA_HASH], 65);
+            cache_get_value_name(0, "Hash", gUserInfo[playerid][E_USER_DATA_HASH], 65);
 
             inline const AccountExists(response, listitem, string:inputtext[])
             {
@@ -48,7 +48,7 @@ User_DoesAccountExist(playerid)
                         }
                     }
                     // Check player password
-                    BCrypt_CheckInline(inputtext, gPlayerInfo[playerid][E_PLAYER_DATA_HASH], using inline CheckHash);
+                    BCrypt_CheckInline(inputtext, gUserInfo[playerid][E_USER_DATA_HASH], using inline CheckHash);
                 }
             }
             // Call inline dialog for login
@@ -78,7 +78,7 @@ User_DoesAccountExist(playerid)
                     inline const HashPassword(string:result[])
                     {
                         // Thread query insert player acc in db
-                        mysql_tquery(gHandler, va_return("INSERT INTO players(Name, Hash) VALUES('%q', '%q')", ReturnPlayerName(playerid), result));
+                        mysql_tquery(gHandler, va_return("INSERT INTO users(Name, Hash) VALUES('%q', '%q')", ReturnPlayerName(playerid), result));
                         // Check account existance again -> Let them login this time
                         User_DoesAccountExist(playerid);
                     }
@@ -91,7 +91,7 @@ User_DoesAccountExist(playerid)
         }
     }
     // Thread query select player's hash, check if the account exists
-    MySQL_TQueryInline(gHandler, using inline DoesAccountExist, "SELECT Hash FROM players WHERE Name = '%e'", ReturnPlayerName(playerid));
+    MySQL_TQueryInline(gHandler, using inline DoesAccountExist, "SELECT Hash FROM users WHERE Name = '%e'", ReturnPlayerName(playerid));
     return true;
 }
 
@@ -114,19 +114,19 @@ User_Login(playerid)
         else // Otherwise
         {
             // Load data
-            cache_get_value_name_int(0, "ID", gPlayerInfo[playerid][E_PLAYER_DATA_ID]);
-            cache_get_value_name_int(0, "Rank", gPlayerInfo[playerid][E_PLAYER_DATA_RANK]);
-            cache_get_value_name_float(0, "PosX", gPlayerInfo[playerid][E_PLAYER_DATA_POS_X]);
-            cache_get_value_name_float(0, "PosY", gPlayerInfo[playerid][E_PLAYER_DATA_POS_Y]);
-            cache_get_value_name_float(0, "PosZ", gPlayerInfo[playerid][E_PLAYER_DATA_POS_Z]);
-            cache_get_value_name_float(0, "PosA", gPlayerInfo[playerid][E_PLAYER_DATA_POS_A]);
+            cache_get_value_name_int(0, "ID", gUserInfo[playerid][E_USER_DATA_ID]);
+            cache_get_value_name_int(0, "Rank", gUserInfo[playerid][E_USER_DATA_RANK]);
+            cache_get_value_name_float(0, "PosX", gUserInfo[playerid][E_USER_DATA_POS_X]);
+            cache_get_value_name_float(0, "PosY", gUserInfo[playerid][E_USER_DATA_POS_Y]);
+            cache_get_value_name_float(0, "PosZ", gUserInfo[playerid][E_USER_DATA_POS_Z]);
+            cache_get_value_name_float(0, "PosA", gUserInfo[playerid][E_USER_DATA_POS_A]);
             // Give perms if needed
             Admin_StaffGroup(playerid);
             // Show msg that they successfully logged in
             SendClientMessage(playerid, X11_YELLOW, "[Server]:"WHITE" Your account has been successfully loaded. Welcome back!");
-            // va_SendClientMessage(playerid, X11_YELLOW, "[Server]"WHITE" Your SQL ID: %i.", gPlayerInfo[playerid][E_PLAYER_ID]);
+            // va_SendClientMessage(playerid, X11_YELLOW, "[Server]"WHITE" Your SQL ID: %i.", gUserInfo[playerid][E_PLAYER_ID]);
             // Spawn info
-            SetSpawnInfo(playerid, 0, 299, gPlayerInfo[playerid][E_PLAYER_DATA_POS_X], gPlayerInfo[playerid][E_PLAYER_DATA_POS_Y], gPlayerInfo[playerid][E_PLAYER_DATA_POS_Z], gPlayerInfo[playerid][E_PLAYER_DATA_POS_A], 0, 0, 0, 0, 0, 0);
+            SetSpawnInfo(playerid, 0, 299, gUserInfo[playerid][E_USER_DATA_POS_X], gUserInfo[playerid][E_USER_DATA_POS_Y], gUserInfo[playerid][E_USER_DATA_POS_Z], gUserInfo[playerid][E_USER_DATA_POS_A], 0, 0, 0, 0, 0, 0);
             // Spawn
             SpawnPlayer(playerid);
         }
@@ -134,21 +134,21 @@ User_Login(playerid)
     // Give everyone the logged in group
     User_GroupLoggedIn(playerid);
     // Select everything from db
-    MySQL_TQueryInline(gHandler, using inline LoadAccount, "SELECT * FROM players WHERE Name = '%e'", ReturnPlayerName(playerid));
+    MySQL_TQueryInline(gHandler, using inline LoadAccount, "SELECT * FROM users WHERE Name = '%e'", ReturnPlayerName(playerid));
     return true;
 }
 
 User_Save(playerid)
 {
-    GetPlayerPos(playerid, gPlayerInfo[playerid][E_PLAYER_DATA_POS_X], gPlayerInfo[playerid][E_PLAYER_DATA_POS_Y], gPlayerInfo[playerid][E_PLAYER_DATA_POS_Z]);
-    GetPlayerFacingAngle(playerid, gPlayerInfo[playerid][E_PLAYER_DATA_POS_A]);
+    GetPlayerPos(playerid, gUserInfo[playerid][E_USER_DATA_POS_X], gUserInfo[playerid][E_USER_DATA_POS_Y], gUserInfo[playerid][E_USER_DATA_POS_Z]);
+    GetPlayerFacingAngle(playerid, gUserInfo[playerid][E_USER_DATA_POS_A]);
     
-    mysql_tquery(gHandler, va_return("UPDATE players SET PosX = '%.4f', PosY = '%.4f', PosZ = '%.4f', PosA = '%.4f' WHERE ID = '%d'",
-        gPlayerInfo[playerid][E_PLAYER_DATA_POS_X],
-        gPlayerInfo[playerid][E_PLAYER_DATA_POS_Y],
-        gPlayerInfo[playerid][E_PLAYER_DATA_POS_Z],
-        gPlayerInfo[playerid][E_PLAYER_DATA_POS_A],
-        gPlayerInfo[playerid][E_PLAYER_DATA_ID]
+    mysql_tquery(gHandler, va_return("UPDATE users SET PosX = '%.4f', PosY = '%.4f', PosZ = '%.4f', PosA = '%.4f' WHERE ID = '%d'",
+        gUserInfo[playerid][E_USER_DATA_POS_X],
+        gUserInfo[playerid][E_USER_DATA_POS_Y],
+        gUserInfo[playerid][E_USER_DATA_POS_Z],
+        gUserInfo[playerid][E_USER_DATA_POS_A],
+        gUserInfo[playerid][E_USER_DATA_ID]
     ));
 
     printf("Saved User : %s", User_GetName(playerid));
@@ -157,9 +157,9 @@ User_Save(playerid)
 
 void:User_ResetVariables(playerid)
 {
-    gPlayerInfo[playerid][E_PLAYER_DATA_ID] = 0;
-    gPlayerInfo[playerid][E_PLAYER_DATA_RANK] = 0;
-    gPlayerInfo[playerid][E_PLAYER_DATA_HASH][0] = EOS;
+    gUserInfo[playerid][E_USER_DATA_ID] = 0;
+    gUserInfo[playerid][E_USER_DATA_RANK] = 0;
+    gUserInfo[playerid][E_USER_DATA_HASH][0] = EOS;
 }
 
 User_DelayedKick(playerid)
