@@ -1,15 +1,5 @@
 // Functions
 
-Vehicle_SpawnVehicle(vehicleid)
-{
-    if (vehicleid != -1 && gVehicleInfo[vehicleid][E_VEHICLE_DATA_EXISTS])
-    {
-        gVehicleInfo[vehicleid][E_VEHICLE_DATA_VEHICLE] = CreateVehicle(gVehicleInfo[vehicleid][E_VEHICLE_DATA_MODEL], gVehicleInfo[vehicleid][E_VEHICLE_DATA_POS_X], gVehicleInfo[vehicleid][E_VEHICLE_DATA_POS_Y], gVehicleInfo[vehicleid][E_VEHICLE_DATA_POS_Z], gVehicleInfo[vehicleid][E_VEHICLE_DATA_POS_A], gVehicleInfo[vehicleid][E_VEHICLE_DATA_COLOR_1], gVehicleInfo[vehicleid][E_VEHICLE_DATA_COLOR_2], -1, gVehicleInfo[vehicleid][E_VEHICLE_DATA_SIREN]);
-        SetVehicleHealth(vehicleid, gVehicleInfo[vehicleid][E_VEHICLE_DATA_HEALTH]);
-    }
-    return false;
-}
-
 Vehicle_LoadData()
 {
     inline const LoadVehicles()
