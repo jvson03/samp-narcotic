@@ -13,7 +13,8 @@
 		"Zeex/samp-plugin-crashdetect:v4.20",
 		"samp-incognito/samp-streamer-plugin:v2.9.5",
 		"Se8870/samp-command-guess",
-		"NexiusTailer/MapFix"
+		"NexiusTailer/MapFix",
+		"jvson03/samp_timestamp"
 	],
 	"local": true,
 	"runtime": {

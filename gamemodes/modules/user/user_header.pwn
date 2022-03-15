@@ -13,7 +13,6 @@ enum E_USER_DATA
 };
 
 new
-    MySQL:gHandler,
     gUserInfo[MAX_PLAYERS][E_USER_DATA],
     Group:gGroupLoggedIn;
 

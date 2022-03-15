@@ -33,6 +33,7 @@ main() {}
 
 // Modules
 
+#include ".\modules\sql\sql_core.pwn"
 #include ".\modules\chat\chat_core.pwn"
 #include ".\modules\ban\ban_core.pwn"
 #include ".\modules\user\user_core.pwn"

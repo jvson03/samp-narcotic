@@ -3,6 +3,7 @@
 #define CIDR_BAN_MASK \
 	(-1<<(32-(26))) // 26 = this is the CIDR ip detection range
 #define KICK_TIMER_DELAY 150 // in miliseconds - a timer delay added to Kick(); function
+#define MAX_PLAYER_IP 18
 
 // Header
 

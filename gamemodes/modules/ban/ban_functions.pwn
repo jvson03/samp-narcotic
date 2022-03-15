@@ -129,13 +129,13 @@ public OnUserBanDataLoad(playerid) {
             SendClientMessage(playerid, -1, "");
         }
 
-        format(string, sizeof(string), "This account is banned on this server! Banned on %s (%s ago) by admin %s!", ReturnDate(ban_timestamp), ReturnTimelapse(ban_timestamp, gettime()));
-        SendServerMessage(playerid, string);
+        format(string, sizeof(string), "This account is banned on this server! Banned on %s (%s ago) by admin %s!", Ban_ReturnDate(ban_timestamp), Ban_ReturnTimelapse(ban_timestamp, gettime()));
+        SendClientMessage(playerid, X11_INDIAN_RED, string);
         format(string, sizeof(string), "Reason: %s", ban_reason);
-        SendServerMessage(playerid, string);
+        SendClientMessage(playerid, X11_INDIAN_RED, string);
         if (ban_expire_timestamp != 0) {
-            format(string, sizeof(string), "Your ban will be lifted on: %s (%s)", ReturnDate(ban_expire_timestamp), ReturnTimelapse(gettime(), ban_expire_timestamp));
-            SendServerMessage(playerid, string);
+            format(string, sizeof(string), "Your ban will be lifted on: %s (%s)", Ban_ReturnDate(ban_expire_timestamp), Ban_ReturnTimelapse(gettime(), ban_expire_timestamp));
+            SendClientMessage(playerid, X11_INDIAN_RED, string);
         }
 
         User_DelayedKick(playerid);
@@ -188,12 +188,12 @@ public OnFindBanSearchDataLoad(playerid, const match[]) {
     if (unban_date == 0) {
         format(string, sizeof(string),
             WHITE "/findban search result for \"%s\":\n\n"GREY"* UserName: "RED"%s\n"GREY"* IP. Address: "RED"%s\n"GREY"* Banned By Admin: "WHITE"%s\n"GREY"* Banned On Date: "WHITE"%s (%s ago)\n"GREY"* Ban Type: "WHITE"Permanent\n"GREY"* Reason: "WHITE"%s\n\nToday's Date: %s!\nTo unban a player, type /unban <name/ip>!",
-            match, name, ip, admin, ReturnDate(date), ReturnTimelapse(date, gettime()), reason, ReturnDate(gettime())
+            match, name, ip, admin, Ban_ReturnDate(date), Ban_ReturnTimelapse(date, gettime()), reason, Ban_ReturnDate(gettime())
         );
     } else {
         format(string, sizeof(string),
             WHITE "/findban search result for \"%s\":\n\n"GREY"* UserName: "RED"%s\n"GREY"* IP. Address: "RED"%s\n"GREY"* Banned By Admin: "WHITE"%s\n"GREY"* Banned On Date: "WHITE"%s (%s ago)\n"GREY"* UnBan On: "RED"%s (%s)\n"GREY"* Reason: "WHITE"%s\n\nToday's Date: %s!\nTo unban a player, type /unban <name/ip>!",
-            match, name, ip, admin, ReturnDate(date), ReturnTimelapse(date, gettime()), ReturnDate(unban_date), ReturnTimelapse(gettime(), unban_date), reason, ReturnDate(gettime())
+            match, name, ip, admin, Ban_ReturnDate(date), Ban_ReturnTimelapse(date, gettime()), Ban_ReturnDate(unban_date), Ban_ReturnTimelapse(gettime(), unban_date), reason, Ban_ReturnDate(gettime())
         );
     }
 
@@ -242,20 +242,20 @@ public OnUnBanSearchDataLoad(playerid) {
     SendClientMessage(playerid, -1, "");
 
     format(string, sizeof(string), "Are you sure you want to unban \"%s\" (ip: %s)?", gUnBanData[playerid][E_UNBAN_DATA_TARGET_NAME], ip);
-    SendServerMessage(playerid, string);
+    SendClientMessage(playerid, X11_INDIAN_RED, string);
 
     if (unban_date == 0) {
         format(string, sizeof(string),
             "%s was banned by admin %s, on %s (%s ago) || Unban On: %s || Reason: %s",
-            gUnBanData[playerid][E_UNBAN_DATA_TARGET_NAME], admin, ReturnDate(date), ReturnTimelapse(date, gettime()), ReturnDate(unban_date), reason
+            gUnBanData[playerid][E_UNBAN_DATA_TARGET_NAME], admin, Ban_ReturnDate(date), Ban_ReturnTimelapse(date, gettime()), Ban_ReturnDate(unban_date), reason
         );
     } else {
         format(string, sizeof(string),
             "%s was banned by admin %s, on %s (%s ago) || Ban Type: Permanent || Reason: %s",
-            gUnBanData[playerid][E_UNBAN_DATA_TARGET_NAME], admin, ReturnDate(date), ReturnTimelapse(date, gettime()), reason
+            gUnBanData[playerid][E_UNBAN_DATA_TARGET_NAME], admin, Ban_ReturnDate(date), Ban_ReturnTimelapse(date, gettime()), reason
         );
     }
-    SendServerMessage(playerid, string);
+    SendClientMessage(playerid, X11_INDIAN_RED, string);
 
     SendServerMessage(playerid, "Type \"/unban yes\" to unban this player, or type \"/unban no\" to cancel");
 

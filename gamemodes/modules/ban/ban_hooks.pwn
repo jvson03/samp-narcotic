@@ -5,7 +5,7 @@
 
 hook OnGameModeInit()
 {
-    Ban_CreateTextDraws()
+    Ban_CreateTextDraws();
     return true;
 }
 
@@ -30,7 +30,7 @@ hook OnPlayerConnect(playerid)
 	new string[MAX_PLAYER_NAME + 256];
 	mysql_format(gHandler, string, sizeof(string),
 		"SELECT * FROM bans WHERE (name = '%e') OR (ip = '%e') OR (longip & %i = %i) LIMIT 1",
-		name, ip, CIDR_BAN_MASK, (IpToLong(ip) & CIDR_BAN_MASK)
+		name, ip, CIDR_BAN_MASK, (Ban_IpToLong(ip) & CIDR_BAN_MASK)
 	);
 
 	mysql_tquery(gHandler, string, "OnUserBanDataLoad", "i", playerid);
