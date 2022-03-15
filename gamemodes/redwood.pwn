@@ -26,6 +26,7 @@
 #include <YSI_Visual\y_commands>
 #include <command-guess>
 #include <mapfix>
+#include <timestamp>
 #include <YSI_Coding\y_hooks>
 
 main() {}
@@ -33,6 +34,7 @@ main() {}
 // Modules
 
 #include ".\modules\chat\chat_core.pwn"
+#include ".\modules\ban\ban_core.pwn"
 #include ".\modules\user\user_core.pwn"
 #include ".\modules\admin\admin_core.pwn"
 #include ".\modules\vehicle\vehicle_core.pwn"

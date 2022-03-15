@@ -37,7 +37,7 @@ YCMD:giveveh(playerid, params[], help)
     }
     
     va_SendClientMessage(playerid, X11_INDIAN_RED, "[Server]:"WHITE" You have created vehicle ID: %d for %s.", gVehicleInfo[id][E_VEHICLE_DATA_VEHICLE], User_GetName(userid));
-    return true;
+    return COMMAND_OK;
 }
 
 YCMD:veh(playerid, params[], help)
@@ -70,7 +70,7 @@ YCMD:veh(playerid, params[], help)
     GetPlayerFacingAngle(playerid, angle);
     
     CreateVehicle(model[0], x, y + 2, z + 1, angle, random(127), random(127), -1, true);
-    return true;
+    return COMMAND_OK;
 }
 
 YCMD:vehdel(playerid, params[], help)
@@ -86,7 +86,7 @@ YCMD:vehdel(playerid, params[], help)
         DestroyVehicle(vehicleid);
         SendServerMessage(playerid, "You have destroyed this admin vehicle.");
     }
-    return true;
+    return COMMAND_OK;
 }
 
 YCMD:deleteveh(playerid, params[], help)
@@ -116,5 +116,5 @@ YCMD:deleteveh(playerid, params[], help)
     
     Vehicle_DeleteData(Vehicle_GetID(id));
     va_SendClientMessage(playerid, X11_INDIAN_RED, "[Server]:"WHITE" You have successfully destroyed vehicle ID: %d.", id);
-    return true;
+    return COMMAND_OK;
 }
