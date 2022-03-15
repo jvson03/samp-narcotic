@@ -39,3 +39,33 @@ YCMD:giveveh(playerid, params[], help)
     va_SendClientMessage(playerid, X11_YELLOW, "You have created vehicle ID: %d for %s.", gVehicleInfo[id][E_VEHICLE_DATA_VEHICLE], User_GetName(userid));
     return true;
 }
+
+YCMD:deleteveh(playerid, params[], help)
+{
+	static
+        id = 0;
+    
+    if (help)
+    {
+        return SendClientMessage(playerid, X11_YELLOW, "[Info]:"WHITE" Delete a vehicle.  Example: '/deleteveh 1'");
+    }
+    
+    if (sscanf(params, "d", id))
+    {
+        if (IsPlayerInAnyVehicle(playerid))
+        {
+            id = GetPlayerVehicleID(playerid);
+        }
+        else return SendClientMessage(playerid, X11_YELLOW, "[Usage]:"WHITE" /destroycar [vehicle id]");
+    }
+    
+
+    if (!IsValidVehicle(id) || Vehicle_GetID(id) == -1)
+    {
+        return SendClientMessage(playerid, X11_YELLOW, "You have specified an invalid vehicle ID.");
+    }
+    
+    Vehicle_DeleteData(Vehicle_GetID(id));
+    va_SendClientMessage(playerid, X11_YELLOW, "You have successfully destroyed vehicle ID: %d.", id);
+    return true;
+}

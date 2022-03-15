@@ -9,5 +9,6 @@ hook OnGameModeInit()
     Vehicle_LoadData();
 
     Group_SetCommand(gAdmin, YCMD:giveveh, ALLOW);
+    Group_SetCommand(gAdmin, YCMD:deleteveh, ALLOW);
     return true;
 }

@@ -90,10 +90,10 @@ Vehicle_GetModelByName(const name[])
     return 0;
 }
 
-// Vehicle_GetID(vehicleid)
-// {
-//     return gVehicleInfo[vehicleid][E_VEHICLE_DATA_ID];
-// }
+Vehicle_GetID(vehicleid)
+{
+    return gVehicleInfo[vehicleid][E_VEHICLE_DATA_ID];
+}
 
 // Vehicle_GetOwner(vehicleid)
 // {
