@@ -12,5 +12,7 @@ hook OnGameModeInit()
     Group_SetCommand(gAdmin, YCMD:deleteveh, ALLOW);
     Group_SetCommand(gMod, YCMD:veh, ALLOW);
     Group_SetCommand(gAdmin, YCMD:veh, ALLOW);
+    Group_SetCommand(gMod, YCMD:vehdel, ALLOW);
+    Group_SetCommand(gAdmin, YCMD:vehdel, ALLOW);
     return true;
 }

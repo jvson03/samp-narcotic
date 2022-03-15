@@ -50,7 +50,7 @@ YCMD:veh(playerid, params[], help)
         return SendClientMessage(playerid, X11_YELLOW, "[Info]:"WHITE" Spawn a temporary a vehicle.  Example: '/veh cheetah'");
     }
     
-    if (sscanf(params, "us[32]", model))
+    if (sscanf(params, "s[32]", model))
     {
         return SendClientMessage(playerid, X11_YELLOW, "[Usage]:"WHITE" /veh [modelid/name]");
     }
@@ -70,6 +70,22 @@ YCMD:veh(playerid, params[], help)
     GetPlayerFacingAngle(playerid, angle);
     
     CreateVehicle(model[0], x, y + 2, z + 1, angle, random(127), random(127), -1, true);
+    return true;
+}
+
+YCMD:vehdel(playerid, params[], help)
+{
+    if (help)
+    {
+        return SendClientMessage(playerid, X11_YELLOW, "[Info]:"WHITE" Delete a temporary a vehicle.  Example: '/vehdel'");
+    }
+    
+    if (IsPlayerInAnyVehicle(playerid))
+    {
+        new vehicleid = GetPlayerVehicleID(playerid);
+        DestroyVehicle(vehicleid);
+        SendClientMessage(playerid, X11_YELLOW, "You have destroyed this admin vehicle.");
+    }
     return true;
 }
 
