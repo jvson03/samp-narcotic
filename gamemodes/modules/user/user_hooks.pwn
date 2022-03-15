@@ -28,8 +28,26 @@ hook OnGameModeInit()
 
 hook OnPlayerConnect(playerid)
 {
+    SetPlayerColor(playerid, 0xBFFFBC00);
+    // Start the loading music
+    PlayAudioStreamForPlayer(playerid, "https://redwoodv.net/music/redwood.mp3");
     // Call function to check if their account exists
     User_DoesAccountExist(playerid);
+    // Clear the chat for esthetics
+    for (new i = 0; i < 100; i ++)
+    {
+        SendClientMessage(playerid, -1, "");
+	}
+    // Send Welcoming Message
+    SendClientMessage(playerid, X11_RED, "[Server]: "WHITE" Welcome to Redwood Roleplay.");
+	SendClientMessage(playerid, X11_RED, "[Server]: "WHITE" This is a heavy RP server. Explicit content may be present.");
+    return true;
+}
+
+hook OnPlayerSpawn(playerid)
+{
+    // We stop the loading music when the player spawns in.
+    StopAudioStreamForPlayer(playerid);
     return true;
 }
 
