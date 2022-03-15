@@ -11,7 +11,7 @@ YCMD:giveveh(playerid, params[], help)
     
     if (sscanf(params, "us[32]", userid, model))
     {
-        return SendClientMessage(playerid, X11_YELLOW, "[Usage]:"WHITE" /givecar [playerid/name] [modelid/name]");
+        return SendClientMessage(playerid, X11_YELLOW, "[Usage]:"WHITE" /giveveh [playerid/name] [modelid/name]");
     }
     
     if ((model[0] = Vehicle_GetModelByName(model)) == 0)
@@ -37,6 +37,39 @@ YCMD:giveveh(playerid, params[], help)
     }
     
     va_SendClientMessage(playerid, X11_YELLOW, "You have created vehicle ID: %d for %s.", gVehicleInfo[id][E_VEHICLE_DATA_VEHICLE], User_GetName(userid));
+    return true;
+}
+
+YCMD:veh(playerid, params[], help)
+{
+    static
+        model[32];
+    
+    if (help)
+    {
+        return SendClientMessage(playerid, X11_YELLOW, "[Info]:"WHITE" Spawn a temporary a vehicle.  Example: '/veh cheetah'");
+    }
+    
+    if (sscanf(params, "us[32]", model))
+    {
+        return SendClientMessage(playerid, X11_YELLOW, "[Usage]:"WHITE" /veh [modelid/name]");
+    }
+    
+    if ((model[0] = Vehicle_GetModelByName(model)) == 0)
+    {
+        return SendClientMessage(playerid, X11_YELLOW, "Invalid model.");
+    }
+    
+    static
+        Float:x,
+        Float:y,
+        Float:z,
+        Float:angle;
+    
+    GetPlayerPos(playerid, x, y, z);
+    GetPlayerFacingAngle(playerid, angle);
+    
+    CreateVehicle(model[0], x, y + 2, z + 1, angle, random(127), random(127), -1, true);
     return true;
 }
 
