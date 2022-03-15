@@ -1,7 +1,7 @@
 YCMD:ann(playerid, params[], help)
 {
 	if (help)
-		return SendClientMessage(playerid, X11_YELLOW, "[Info]:"WHITE" Sends an announcement in the chat.  Example: '/ann i love frogs'");
+		return SendInfoMessage(playerid, "Sends an announcement in the chat.  Example: '/ann i love frogs'");
 
 	if (isnull(params))
 		return SendUsageMessage(playerid, "Cannot send empty announcement");

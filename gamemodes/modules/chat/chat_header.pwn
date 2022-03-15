@@ -8,3 +8,6 @@
 
 #define SendErrorMessage(%0,%1) \
 	va_SendClientMessage(%0, X11_VIOLET_RED_1 , "[Error]:"WHITE" "%1)
+
+#define SendInfoMessage(%0,%1) \
+	va_SendClientMessage(%0, Y_LIGHT_SKY_BLUE , "[Info]:"WHITE" "%1)

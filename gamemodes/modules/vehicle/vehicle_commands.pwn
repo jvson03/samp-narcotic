@@ -6,7 +6,7 @@ YCMD:giveveh(playerid, params[], help)
     
     if (help)
     {
-        return SendClientMessage(playerid, X11_YELLOW, "[Info]:"WHITE" Give someone a vehicle.  Example: '/giveveh jason cheetah'");
+        return SendInfoMessage(playerid, "Give someone a vehicle.  Example: '/giveveh jason cheetah'");
     }
     
     if (sscanf(params, "us[32]", userid, model))
@@ -47,7 +47,7 @@ YCMD:veh(playerid, params[], help)
     
     if (help)
     {
-        return SendClientMessage(playerid, X11_YELLOW, "[Info]:"WHITE" Spawn a temporary a vehicle.  Example: '/veh cheetah'");
+        return SendInfoMessage(playerid, "Spawn a temporary a vehicle.  Example: '/veh cheetah'");
     }
     
     if (sscanf(params, "s[32]", model))
@@ -77,7 +77,7 @@ YCMD:vehdel(playerid, params[], help)
 {
     if (help)
     {
-        return SendClientMessage(playerid, X11_YELLOW, "[Info]:"WHITE" Delete a temporary a vehicle.  Example: '/vehdel'");
+        return SendInfoMessage(playerid, "Delete a temporary a vehicle.  Example: '/vehdel'");
     }
     
     if (IsPlayerInAnyVehicle(playerid))
@@ -96,7 +96,7 @@ YCMD:deleteveh(playerid, params[], help)
     
     if (help)
     {
-        return SendClientMessage(playerid, X11_YELLOW, "[Info]:"WHITE" Delete a vehicle.  Example: '/deleteveh 1'");
+        return SendInfoMessage(playerid, "Delete a vehicle.  Example: '/deleteveh 1'");
     }
     
     if (sscanf(params, "d", id))
