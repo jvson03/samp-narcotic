@@ -23,6 +23,7 @@
 		"mode": "server",
 		"rcon_password": "gurumiisdumb",
 		"port": 7777,
+		"password": "gurumiisdumb",
 		"hostname": "[Heavy] - Narcotic Roleplay | SAMP - [Re-Launching]",
 		"maxplayers": 250,
 		"language": "English",
