@@ -168,6 +168,10 @@ void:User_ResetVariables(playerid)
     gUserInfo[playerid][E_USER_DATA_ID] = 0;
     gUserInfo[playerid][E_USER_DATA_RANK] = 0;
     gUserInfo[playerid][E_USER_DATA_HASH][0] = EOS;
+    gUserInfo[playerid][E_USER_DATA_POS_X] = 0.0;
+    gUserInfo[playerid][E_USER_DATA_POS_Y] = 0.0;
+    gUserInfo[playerid][E_USER_DATA_POS_Z] = 0.0;
+    gUserInfo[playerid][E_USER_DATA_POS_A] = 0.0;
 }
 
 User_DelayedKick(playerid)
