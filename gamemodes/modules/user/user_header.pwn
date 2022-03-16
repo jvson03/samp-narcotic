@@ -34,3 +34,14 @@ User_GetRank(playerid)
 {
     return gUserInfo[playerid][E_USER_DATA_RANK];
 }
+
+// User_GetRoleplayName(playerid)
+// {
+//     new name[24];
+//     GetPlayerName(playerid,name,24);
+//     for(new i=0;i<strlen(name);i++) if(name[i]=='_')
+//     { 
+//         name[i]=' ';
+//         return name;
+//     }
+// }
