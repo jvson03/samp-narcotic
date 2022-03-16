@@ -2,5 +2,5 @@
 
 // ptask Compass[1000](playerid)
 // {
-// 	UICompassTimer(playerid);
+// 	Hud_CompassTimer(playerid);
 // }

@@ -1,6 +1,5 @@
 // Functions
-
-UICompassTimer(playerid)
+Hud_CompassTimer(playerid)
 {
     static const
         step_1 = MAX_UICOMPASS_STEP * 1,
@@ -66,5 +65,3 @@ UICompassTimer(playerid)
 
     return 1;
 }
-
-CreatePlayerTextDraw(playerid, Float:x, Float:y, text[])
