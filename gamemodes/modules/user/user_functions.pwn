@@ -72,7 +72,7 @@ User_DoesAccountExist(playerid)
                     if(isnull(inputtext) || strlen(inputtext) <= 4)
                     {
                         // They've to enter pass again
-                        Dialog_ShowCallback(playerid, using inline AccountDoenstExists, DIALOG_STYLE_PASSWORD, "Register", "Welcome to Redwood! Enter a password to get started.", "Confirm", "Cancel");
+                        Dialog_ShowCallback(playerid, using inline AccountDoenstExists, DIALOG_STYLE_PASSWORD, "Register", "Welcome to Narcotic! Enter a password to get started.", "Confirm", "Cancel");
                         return true;
                     }
                     inline const HashPassword(string:result[])
@@ -87,7 +87,7 @@ User_DoesAccountExist(playerid)
                 }
             }
             // Show register dialog
-            Dialog_ShowCallback(playerid, using inline AccountDoenstExists, DIALOG_STYLE_PASSWORD, "Register", "Welcome to Redwood! Enter a password to get started.", "Confirm", "Cancel");
+            Dialog_ShowCallback(playerid, using inline AccountDoenstExists, DIALOG_STYLE_PASSWORD, "Register", "Welcome to Narcotic! Enter a password to get started.", "Confirm", "Cancel");
         }
     }
     // Thread query select player's hash, check if the account exists

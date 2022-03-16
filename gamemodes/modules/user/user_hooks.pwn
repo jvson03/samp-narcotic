@@ -26,7 +26,7 @@ hook OnPlayerConnect(playerid)
         SendClientMessage(playerid, -1, "");
 	}
     // Send Welcoming Message
-    SendServerMessage(playerid, "Welcome to Redwood Roleplay.");
+    SendServerMessage(playerid, "Welcome to Narcotic Roleplay.");
     SendServerMessage(playerid, "This is a heavy RP server. Explicit content may be present.");
     return true;
 }
