@@ -26,13 +26,13 @@ A gamemode built from scratch for NCRP. Developed in pawn language.
 
 #### The file naming inside modules should be as the following
 
-```http
+```js
     [prefix]_[content].pwn
 ```
 
 ### Messages
 
-```http
+```js
     SendErrorMessage()
 ```
 
@@ -43,7 +43,7 @@ A gamemode built from scratch for NCRP. Developed in pawn language.
 | `playerid` | `int` | **Required**. The player id |
 | `message` | `string` | **Required**. The error message |
 
-```http
+```js
     SendUsageMessage()
 ```
 
@@ -55,7 +55,7 @@ A gamemode built from scratch for NCRP. Developed in pawn language.
 | `message` | `string` | **Required**. The usage message |
 
 
-```http
+```js
     SendInfoMessage()
 ```
 
@@ -66,7 +66,7 @@ A gamemode built from scratch for NCRP. Developed in pawn language.
 | `playerid` | `int` | **Required**. The player id |
 | `message` | `string` | **Required**. The info message |
 
-```http
+```js
     SendServerMessage()
 ```
 
