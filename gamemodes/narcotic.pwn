@@ -29,6 +29,7 @@
 #include <mapfix>
 #include <timestamp>
 #include <UIC>
+#include <Pawn.Regex>
 #include <YSI_Coding\y_hooks>
 
 main() {}

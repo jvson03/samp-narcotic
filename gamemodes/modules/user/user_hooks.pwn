@@ -7,7 +7,6 @@ hook OnGameModeInit()
 {
 	// Create a group for people logged in.
 	gGroupLoggedIn = Group_Create();
-
 	// Disable all commands by default.
 	Group_SetGlobalCommandDefault(UNDEF);
     return true;
@@ -18,8 +17,16 @@ hook OnPlayerConnect(playerid)
     SetPlayerColor(playerid, 0xBFFFBC00);
     // Start the loading music
     PlayAudioStreamForPlayer(playerid, "https://redwoodv.net/music/redwood.mp3");
-    // Call function to check if their account exists
-    User_DoesAccountExist(playerid);
+    // Check if users nickname is the right format
+    if (User_IsRpNickname(User_GetName(playerid)))
+    {
+        // Call function to check if their account exists
+        User_DoesAccountExist(playerid);
+    } else {
+        SendErrorMessage(playerid, "You do not seem to have a roleplay nickname. Please use the right format - Name_Lastname.");
+        User_DelayedKick(playerid);
+        return 0;
+    }
     // Clear the chat for esthetics
     for (new i = 0; i < 100; i ++)
     {

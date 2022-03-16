@@ -7,6 +7,14 @@ User_GroupLoggedIn(playerid)
     return true;
 }
 
+stock User_IsRpNickname(const nickname[])
+{
+    static Regex:regex;
+    if (!regex) regex = Regex_New("[A-Z][a-z]+_[A-Z][a-z]+");
+
+    return Regex_Check(nickname, regex);
+}
+
 User_DoesAccountExist(playerid)
 {
     inline const DoesAccountExist()
@@ -169,6 +177,6 @@ User_DelayedKick(playerid)
         // Kick player when the timer's called
         Kick(playerid);
     }
-    // Inline timer, called after half second, no repeat
-    return Timer_CreateCallback(using inline KickPlayer, 500, 1);
+    // Inline timer, called after a second, no repeat
+    return Timer_CreateCallback(using inline KickPlayer, 1000, 1);
 }
