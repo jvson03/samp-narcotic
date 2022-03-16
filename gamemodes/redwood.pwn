@@ -24,6 +24,7 @@
 #include <YSI_Data\y_iterate>
 #include <YSI_Players\y_groups>
 #include <YSI_Visual\y_commands>
+#include <YSI_Coding\y_timers>
 #include <command-guess>
 #include <mapfix>
 #include <timestamp>
@@ -40,3 +41,4 @@ main() {}
 #include ".\modules\ban\ban_core.pwn"
 #include ".\modules\user\user_core.pwn"
 #include ".\modules\vehicle\vehicle_core.pwn"
+#include ".\modules\hud\hud_core.pwn"
