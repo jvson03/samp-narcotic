@@ -29,14 +29,14 @@ User_DoesAccountExist(playerid)
             // Stuff goes here
             User_RegisteredText(playerid);
             User_ShowLoginTextDraws(playerid);
-            pRegistered[playerid] == true;
+            gUserInfo[playerid][E_USER_DATA_REGISTERED] = true;
         }
         else // If account doesn't exist
         {
             // Stuff goes
             User_NotRegisteredText(playerid);
             User_ShowLoginTextDraws(playerid);
-            pRegistered[playerid] == false;
+            gUserInfo[playerid][E_USER_DATA_REGISTERED] = false;
         }
     }
     // Thread query
@@ -111,14 +111,8 @@ User_Save(playerid)
 
 void:User_ResetVariables(playerid)
 {
-    gUserInfo[playerid][E_USER_DATA_ID] = 0;
-    gUserInfo[playerid][E_USER_DATA_RANK] = 0;
-    gUserInfo[playerid][E_USER_DATA_HASH][0] = EOS;
-    gUserInfo[playerid][E_USER_DATA_POS_X] = 0.0;
-    gUserInfo[playerid][E_USER_DATA_POS_Y] = 0.0;
-    gUserInfo[playerid][E_USER_DATA_POS_Z] = 0.0;
-    gUserInfo[playerid][E_USER_DATA_POS_A] = 0.0;
-    pRegistered[playerid] == false;
+    gUserInfo[playerid] = gUserInfoReset; // Set all data from E_USER_DATA to its default value for that playerid.
+    gUserInfo[playerid][E_USER_DATA_REGISTERED] = false;
 }
 
 User_DelayedKick(playerid)
@@ -134,7 +128,7 @@ User_DelayedKick(playerid)
 
 User_RegisteredText(playerid)
 {
-    pRegistered[playerid] = true;
+    gUserInfo[playerid][E_USER_DATA_REGISTERED] = true;
     PlayerTextDrawSetString(playerid, PlayerLoginTextDraw[playerid][3], !"This name seem to be ~g~registered~w~.~n~You can now ~g~login~w~ to your Account.");
     PlayerTextDrawSetString(playerid, PlayerLoginTextDraw[playerid][0], !"      Login"); 
     PlayerTextDrawSetString(playerid, PlayerLoginTextDraw[playerid][1], !"          Welcome back!"); 
@@ -142,7 +136,7 @@ User_RegisteredText(playerid)
 
 User_NotRegisteredText(playerid)
 {
-    pRegistered[playerid] = false;
+    gUserInfo[playerid][E_USER_DATA_REGISTERED] = false;
     new str[128]; //Adapt the size..
     PlayerTextDrawSetString(playerid, PlayerLoginTextDraw[playerid][3], !"This name is ~g~not~w~ registered.~n~You can now create an ~g~Account.");
     PlayerTextDrawSetString(playerid, PlayerLoginTextDraw[playerid][0], !"   Register");

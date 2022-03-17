@@ -23,7 +23,7 @@ hook OnGameModeExit()
 
 hook OnPlayerConnect(playerid)
 {
-    pRegistered[playerid] == false;
+    gUserInfo[playerid][E_USER_DATA_REGISTERED] = false;
     // Set player color
     SetPlayerColor(playerid, 0xBFFFBC00);
     // Start the loading music
@@ -60,7 +60,6 @@ hook OnPlayerSpawn(playerid)
 
 hook OnPlayerDisconnect(playerid, reason)
 {
-    pRegistered[playerid] == false;
     // Destroy textdraws, not needed anymore.
     User_DestroyPlayerTextDraws(playerid);
     // Let's save the user data.
@@ -124,7 +123,7 @@ hook OnPlayerClickPlayerTD(playerid, PlayerText:playertextid)
         {
             cache_get_value_name(0, "Hash", gUserInfo[playerid][E_USER_DATA_HASH], 65);
 
-            if(pRegistered[playerid] == true)
+            if(gUserInfo[playerid][E_USER_DATA_REGISTERED] == true)
             {
                 inline const AccountLogin(response, listitem, string:inputtext[])
                 {
@@ -182,7 +181,7 @@ hook OnPlayerClickPlayerTD(playerid, PlayerText:playertextid)
                         }
                         inline const HashPassword(string:result[])
                         {
-                            pRegistered[playerid] = true;
+                            gUserInfo[playerid][E_USER_DATA_REGISTERED] = true;
                             // Thread query insert player acc in db
                             mysql_tquery(gHandler, va_return("INSERT INTO users(Name, Hash) VALUES('%q', '%q')", ReturnPlayerName(playerid), result));
                             // Check account existance again -> Let them login this time

@@ -11,6 +11,7 @@ enum E_USER_DATA
     E_USER_DATA_ID,
     E_USER_DATA_HASH[65],
     E_USER_DATA_RANK,
+    bool:E_USER_DATA_REGISTERED,
 
     Float:E_USER_DATA_POS_X,
     Float:E_USER_DATA_POS_Y,
@@ -29,10 +30,10 @@ enum
 
 new
     gUserInfo[MAX_PLAYERS][E_USER_DATA],
+    gUserInfoReset[E_USER_DATA],
     Group:gGroupLoggedIn,
     Text:GlobalLoginTextDraw[29],
-    PlayerText:PlayerLoginTextDraw[MAX_PLAYERS][4],
-    bool:pRegistered[MAX_PLAYERS];
+    PlayerText:PlayerLoginTextDraw[MAX_PLAYERS][4];
 
 // Getters
 
