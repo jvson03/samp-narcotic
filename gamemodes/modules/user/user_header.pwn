@@ -1,3 +1,9 @@
+// Settings
+
+#define LT_ServerName "Narcotic Roleplay"   // Change to your Server Name
+#define LoginTextDrawColor 0x4CBB17FF       // Desired color for the TextDraws
+#define TextDrawHoverColor 0x36870FFF       // Desired color for the Hoover Effect
+
 // Header
 
 enum E_USER_DATA
@@ -12,9 +18,21 @@ enum E_USER_DATA
     Float:E_USER_DATA_POS_A
 };
 
+enum
+{
+    D_Login = 10100,
+    D_Register = 10101,
+    D_About = 10102,
+    D_Rules = 10103,
+    D_Credits = 10104
+};
+
 new
     gUserInfo[MAX_PLAYERS][E_USER_DATA],
-    Group:gGroupLoggedIn;
+    Group:gGroupLoggedIn,
+    Text:GlobalLoginTextDraw[29],
+    PlayerText:PlayerLoginTextDraw[MAX_PLAYERS][4],
+    bool:pRegistered[MAX_PLAYERS];
 
 // Getters
 
