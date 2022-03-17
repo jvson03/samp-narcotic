@@ -41,4 +41,5 @@ main() {}
 #include ".\modules\ban\ban_core.pwn"
 #include ".\modules\user\user_core.pwn"
 #include ".\modules\vehicle\vehicle_core.pwn"
+#include ".\modules\fuel\fuel_core.pwn"
 #include ".\modules\hud\hud_core.pwn"
