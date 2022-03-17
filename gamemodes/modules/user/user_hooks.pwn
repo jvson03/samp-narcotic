@@ -122,6 +122,8 @@ hook OnPlayerClickPlayerTD(playerid, PlayerText:playertextid)
     {
         inline const AccountExists()
         {
+            cache_get_value_name(0, "Hash", gUserInfo[playerid][E_USER_DATA_HASH], 65);
+
             if(pRegistered[playerid] == true)
             {
                 inline const AccountLogin(response, listitem, string:inputtext[])
@@ -180,6 +182,7 @@ hook OnPlayerClickPlayerTD(playerid, PlayerText:playertextid)
                         }
                         inline const HashPassword(string:result[])
                         {
+                            pRegistered[playerid] = true;
                             // Thread query insert player acc in db
                             mysql_tquery(gHandler, va_return("INSERT INTO users(Name, Hash) VALUES('%q', '%q')", ReturnPlayerName(playerid), result));
                             // Check account existance again -> Let them login this time

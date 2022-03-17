@@ -17,25 +17,30 @@ stock User_IsRpNickname(const nickname[])
 
 User_DoesAccountExist(playerid)
 {
-    new
-        // Declare rows
-        lRows = cache_num_rows();
-    
-    // If there's any rows - account exists
-    if(lRows)
+    inline const DoesAccountExist()
     {
-        // Stuff goes here
-        User_RegisteredText(playerid);
-        User_ShowLoginTextDraws(playerid);
-        pRegistered[playerid] == true;
+        new
+            // Declare rows
+            lRows = cache_num_rows();
+        
+        // If there's any rows - account exists
+        if(lRows)
+        {
+            // Stuff goes here
+            User_RegisteredText(playerid);
+            User_ShowLoginTextDraws(playerid);
+            pRegistered[playerid] == true;
+        }
+        else // If account doesn't exist
+        {
+            // Stuff goes
+            User_NotRegisteredText(playerid);
+            User_ShowLoginTextDraws(playerid);
+            pRegistered[playerid] == false;
+        }
     }
-    else // If account doesn't exist
-    {
-        // Stuff goes
-        User_NotRegisteredText(playerid);
-        User_ShowLoginTextDraws(playerid);
-        pRegistered[playerid] == false;
-    }
+    // Thread query
+    MySQL_TQueryInline(gHandler, using inline DoesAccountExist, "SELECT Hash FROM users WHERE Name = '%e'", ReturnPlayerName(playerid));
     return true;
 }
 
