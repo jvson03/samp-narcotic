@@ -30,6 +30,7 @@
 #include <timestamp>
 #include <UIC>
 #include <Pawn.Regex>
+#include <zones>
 #include <YSI_Coding\y_hooks>
 
 main() {}
@@ -40,6 +41,7 @@ main() {}
 #include ".\modules\sql\sql_core.pwn"
 #include ".\modules\ban\ban_core.pwn"
 #include ".\modules\user\user_core.pwn"
+#include ".\modules\house\house_core.pwn"
 #include ".\modules\vehicle\vehicle_core.pwn"
 #include ".\modules\fuel\fuel_core.pwn"
 #include ".\modules\hud\hud_core.pwn"
