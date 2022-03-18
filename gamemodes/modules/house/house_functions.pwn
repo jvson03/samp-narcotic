@@ -12,7 +12,7 @@ House_LoadData()
         // If there's no rows -> SUS
         if(!lRows)
         {
-            return printf("\n[Houses]: 0 Houses were loaded. Something sus going on...\n");
+            return printf("\n[Houses]: 0 Houses were loaded.\n");
         }
         else // Otherwise
         {
