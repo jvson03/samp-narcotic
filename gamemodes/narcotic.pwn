@@ -34,6 +34,18 @@
 
 main() {}
 
+// Necessary
+
+public OnPlayerFinishedDownloading(playerid, virtualworld)
+{
+    return true;
+}
+
+public OnPlayerRequestDownload(playerid, type, crc)
+{
+    return true;
+}
+
 // Modules
 #include ".\modules\chat\chat_core.pwn"
 #include ".\modules\admin\admin_core.pwn"
@@ -44,3 +56,4 @@ main() {}
 #include ".\modules\vehicle\vehicle_core.pwn"
 #include ".\modules\fuel\fuel_core.pwn"
 #include ".\modules\hud\hud_core.pwn"
+#include ".\modules\map\map_core.pwn"
