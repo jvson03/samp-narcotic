@@ -25,6 +25,8 @@
 #include <YSI_Players\y_groups>
 #include <YSI_Visual\y_commands>
 #include <YSI_Coding\y_timers>
+#include <YSI_Data\y_bit>
+#include <YSI_Core\y_utils>
 #include <command-guess>
 #include <mapfix>
 #include <timestamp>
@@ -59,3 +61,4 @@ public OnPlayerRequestDownload(playerid, type, crc)
 #include ".\modules\fuel\fuel_core.pwn"
 #include ".\modules\hud\hud_core.pwn"
 #include ".\modules\map\map_core.pwn"
+#include ".\modules\mapper\mapper_core.pwn"
