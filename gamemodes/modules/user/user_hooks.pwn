@@ -206,3 +206,14 @@ hook OnPlayerRequestSpawn(playerid)
     SendErrorMessage(playerid, "You cannot do that!");
     return false;
 }
+
+hook OnPlayerUpdate(playerid)
+{
+    // Kick on ping higher than or equal to 300
+	if(GetPlayerPing(playerid) >= 300)
+	{
+        SendServerMessage(playerid, "You have been kicked. Reason: [ High Ping ]");
+        User_DelayedKick(playerid);
+	}
+    return true;
+}
