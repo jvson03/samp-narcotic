@@ -200,3 +200,9 @@ hook OnPlayerClickPlayerTD(playerid, PlayerText:playertextid)
     }
     return false;
 }
+
+hook OnPlayerRequestSpawn(playerid)
+{
+    SendErrorMessage(playerid, "You cannot do that!");
+    return false;
+}
