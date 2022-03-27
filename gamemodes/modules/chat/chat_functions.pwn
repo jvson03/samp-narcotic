@@ -18,3 +18,12 @@ public e_COMMAND_ERRORS:OnPlayerCommandReceived(playerid, cmdtext[], e_COMMAND_E
     }
     return COMMAND_OK;
 }
+
+public e_COMMAND_ERRORS:OnPlayerCommandPerformed(playerid, cmdtext[], e_COMMAND_ERRORS:success)
+{
+    if (!success)
+    {
+        return COMMAND_UNDEFINED;
+    }
+    return COMMAND_OK;
+}
