@@ -27,3 +27,11 @@ public e_COMMAND_ERRORS:OnPlayerCommandPerformed(playerid, cmdtext[], e_COMMAND_
     }
     return COMMAND_OK;
 }
+
+// Change 30 to how many mins u want this to trigger
+ptask Chat_Hints[30 * 60 * 1000]()
+{
+	new txt = random(sizeof(randomHint));
+    va_SendClientMessageToAll(Y_LIGHT_SKY_BLUE , "[Hint]:"WHITE" %s", randomHint[txt]);
+}
+

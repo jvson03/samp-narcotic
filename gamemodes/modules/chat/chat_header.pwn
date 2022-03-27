@@ -11,3 +11,10 @@
 
 #define SendInfoMessage(%0,%1) \
 	va_SendClientMessage(%0, Y_LIGHT_SKY_BLUE , "[Info]:"WHITE" "%1)
+
+new randomHint[][] =
+{
+    "Smoke Weed Everyday!",
+    "Weed is healthy, cocaine is healthier!",
+    "Huh? You still talkin?"
+};
