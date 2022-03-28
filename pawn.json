@@ -57,7 +57,7 @@
 		"cookielogging": false,
 		"output": true,
 		"extra": {
-			"userartwork": "1"
+			"useartwork": "1"
 		}
 	},
 	"builds": [
