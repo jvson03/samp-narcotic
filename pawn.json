@@ -6,7 +6,7 @@
 	"dependencies": [
 		"pawn-lang/samp-stdlib",
 		"Y-Less/code-parse.inc#13ef810e586784944875a16dff785893b5b38ffb",
-		"pawn-lang/YSI-Includes:v5.05.0505",
+		"pawn-lang/YSI-Includes",
 		"pawn-lang/sa-mp-fixes",
 		"maddinat0r/sscanf:v2.8.3",
 		"pBlueG/SA-MP-MySQL:R41-4",
@@ -16,7 +16,7 @@
 		"Se8870/samp-command-guess",
 		"NexiusTailer/MapFix",
 		"jvson03/samp-timestamp",
-		"katursis/Pawn.Regex"
+		"katursis/Pawn.Regex:1.2.3"
 	],
 	"local": true,
 	"runtime": {
@@ -24,12 +24,12 @@
 		"mode": "server",
 		"rcon_password": "gurumiisdumb",
 		"port": 7777,
-		"hostname": "[Heavy] - Narcotic Roleplay | SAMP - [Re-Launching]",
+		"hostname": "[Heavy] - Redwood Roleplay | SAMP - [Re-Launching]",
 		"maxplayers": 250,
 		"language": "English",
 		"mapname": "San Andreas",
-		"weburl": "www.narcotic.net",
-		"gamemodetext": "NC v0.1a",
+		"weburl": "www.redwood.com",
+		"gamemodetext": "RW v0.1a",
 		"announce": true,
 		"lanmode": false,
 		"query": true,
